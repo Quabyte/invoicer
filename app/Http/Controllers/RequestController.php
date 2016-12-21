@@ -16,7 +16,6 @@ class RequestController extends Controller
     public function makeRequest()
     {	
     	$newRequest = new KoobinRequest('https://euroleague.acikgise.com', 600);
-    	$newRequest->getCustomers('2016-12-15T12:00');
     	$newRequest->getSales('2016-12-15T12:00', true);
 
     	return redirect()->back();
