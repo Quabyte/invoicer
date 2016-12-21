@@ -49,13 +49,13 @@
 						<div class="col-md-4">
 							<h4>Payment Details</h4>
 							<p>
-								Net Price: {{ $netPrice }}€
+								Net Price: {{ App/Item::calculateNetPrice($transaction->transaction_id) }}€
 							</p>
 							<p>
-								Bank Comission: {{ $fee }}€
+								Bank Comission: {{ App/Item::calculateFees($transaction->transaction_id) }}€
 							</p>
 							<p>
-								Total: {{ $total }}€
+								Total: {{ App/Item::calculateTotal($transaction->transaction_id) }}€
 							</p>
 						</div>
 					</div>
