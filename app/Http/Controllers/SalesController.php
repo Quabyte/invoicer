@@ -40,11 +40,11 @@ class SalesController extends Controller
     {
         $transaction = Sales::findOrFail($id);
 
-        // $fee = Item::calculateFees($transaction->transaction_id);
+        $fee = Item::calculateFees($transaction->transaction_id);
 
-        // $netPrice = Item::calculateNetPrice($transaction->transaction_id);
+        $netPrice = Item::calculateNetPrice($transaction->transaction_id);
 
-        // $total = Item::calculateTotal($transaction->transaction_id);
+        $total = Item::calculateTotal($transaction->transaction_id);
 
         $customer = Customer::getCustomer($transaction->customer_id);
 
