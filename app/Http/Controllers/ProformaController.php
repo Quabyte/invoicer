@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Booking;
 use App\Proforma;
+use Carbon\Carbon;
+use App\BookingItem;
 use Illuminate\Http\Request;
 
 class ProformaController extends Controller
@@ -27,7 +29,7 @@ class ProformaController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.proforma.create');
     }
 
     /**
@@ -50,8 +52,11 @@ class ProformaController extends Controller
     public function show($id)
     {
         $booking = Booking::findOrFail($id);
+        $items = BookingItem::where('booking_id', '=', $booking->booking_id)->get();
+        $timeNow = Carbon::now('Europe/Istanbul');
+        $total = BookingItem::calculateTotal($booking->booking_id);
 
-        return view('dashboard.proforma.detail', compact('booking'));
+        return view('dashboard.proforma.detail', compact('booking', 'items', 'timeNow', 'total'));
     }
 
     /**
@@ -86,5 +91,10 @@ class ProformaController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function generateProforma($id)
+    {
+
     }
 }

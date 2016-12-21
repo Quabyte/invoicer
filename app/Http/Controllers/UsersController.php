@@ -30,7 +30,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.user.create');
     }
 
     /**
@@ -41,7 +41,14 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = new User;
+        $user->role_id = $request->roleID;
+        $user->name = $request->username;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->save();
+
+        return redirect()->back();
     }
 
     /**

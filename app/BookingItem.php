@@ -32,4 +32,16 @@ class BookingItem extends Model
     		}
     	}
     }
+
+    public static function calculateTotal($bookingRef)
+    {
+        $items = BookingItem::where('booking_id', '=', $bookingRef)->get();
+
+        $total = 0.0;
+        foreach ($items as $item) {
+            $total = $total + $item->total;
+        }
+
+        return $total;
+    }
 }
