@@ -45,7 +45,7 @@
 							</div>
 						</div>
 						<div class="col-md-6" style="padding-top: 30px;">
-							<p>Price: {{ $total }}€</p>
+							<p>Price: {{ App\Item::calculateTotal($transaction->transaction_id) }}€</p>
 						</div>
 					</div>
 
