@@ -70,22 +70,9 @@ class Item extends Model
 
     public static function calculateFees($transactionID)
     {
-        $items = Sales::with('items')->find($transactionID)->items;
+        $items = Item::where('transaction_id', $transactionID)->get();
 
-        $fee = 0;
-        foreach ($items as $item) {
-            $fee = $fee + $item->card_fee;
-        }
-
-        return $fee;
-        // $items = Item::where('transaction_id', '=', $transactionID)->get();
-
-        // $fee = 0.0;
-        // foreach ($items as $item) {
-        //     $fee = $fee + $item->card_fee;
-        // }
-
-        // return $fee;
+        return $items;
     }
 
     public static function calculateNetPrice($transactionID)
