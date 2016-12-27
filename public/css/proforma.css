@@ -2,11 +2,19 @@
 	padding: 0;
 	margin: 0;
 	background: #fff;
+	font-family: 'Open Sans', sans-serif;
 }
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&subset=latin-ext');
 
 p {
 	font-size: 16px;
-	font-family: Arial,Helvetica Neue,Helvetica,sans-serif;
+}
+
+.wrapper {
+	width: 100%;
+	position: absolute;
+	display: block;
 }
 
 .date {
@@ -16,12 +24,41 @@ p {
 	margin-left: 650px;
 }
 
-.company {
-	width: 80%;
-	padding-left: 150px;
-	padding-top: 20px;
+.center h2 {
+	font-size: 18px;
+	font-family: 'Open Sans', sans-serif;
 }
 
-.company h2 {
-	font-size: 18px;
+.center {
+	margin: auto;
+    width: 80%;
+    text-align: center;
+    display: block;
+    position: relative;
+}
+
+.left {
+	margin: auto;
+	margin-top: 50px;
+	width: 80%;
+	text-align: left;
+	display: block;
+	position: relative;
+}
+
+.title {
+	font-size: 22px !important;
+}
+
+.info {
+	font-size: 14px;
+}
+
+.mt70 {
+	margin-top: 70px;
+	margin-bottom: 20px;
+}
+
+table, td {
+	text-align: center;
 }
