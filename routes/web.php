@@ -11,6 +11,7 @@ Route::resource('/sale', 'SalesController');
 Route::resource('/invoice', 'InvoiceController');
 Route::resource('/proforma', 'ProformaController');
 Route::get('/preview/{id}', 'InvoiceController@preview');
+Route::get('/generatedProforma/{$id}', 'ProformaController@generateProforma');
 Route::resource('/role', 'RolesController');
 Route::resource('/permission', 'PermissionsController');
 
