@@ -42,7 +42,7 @@ class ProformaController extends Controller
     public function store(Request $request)
     {
         $proforma = new Proforma;
-        $proforma->booking_id = $request->booking_id;
+        $proforma->booking_id = $request->bookingID;
         $proforma->generatedBy = Auth::id();
         $proforma->total = $request->bookingTotal;
         $proforma->canceled = false;
