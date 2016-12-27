@@ -7,6 +7,7 @@ use App\Proforma;
 use Carbon\Carbon;
 use App\BookingItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 
 class ProformaController extends Controller
