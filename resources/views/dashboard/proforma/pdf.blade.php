@@ -12,7 +12,7 @@
 <body>
 	<div class="container">
 		<div class="image">
-			<img src="{{ asset('images/acikgise-logo.png') }}">
+			<img src="{{ asset('images/acikgise-logo.png') }}" style="max-width: 960px;">
 		</div>
 		<div class="date">
 			<p>{{ $proforma->created_at }}</p>
