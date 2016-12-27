@@ -11,22 +11,19 @@
 </head>
 <body>
 	<div class="container">
-		<div class="image">
-			<img src="{{ asset('images/acikgise-logo.png') }}" style="max-width: 960px;">
-		</div>
+
 		<div class="date">
 			<p>{{ $proforma->created_at }}</p>
 		</div>
 
-		<div class="row">
-			<div class="col-md-offset-2">
-				
-			</div>
-			<div class="col-md-8">
-				<h2>AÇIKGİŞE BİLET HİZMETLERİ ve ORGANİZASYON A.Ş.</h2>
-				<p>Yıldız Posta Caddesi Cerrahoğlu İş Merkezi No:17 Zemin Kat 34394</p>
-				<p>Esentepe-Şişli-İSTANBUL</p>
-			</div>
+		<div class="image">
+			<img src="{{ asset('images/acikgise-logo.png') }}" style="max-width: 300px; margin: 100px 250px 20px 250px;">
+		</div>
+
+		<div class="company">
+			<h2>AÇIKGİŞE BİLET HİZMETLERİ ve ORGANİZASYON A.Ş.</h2>
+			<p>Yıldız Posta Caddesi Cerrahoğlu İş Merkezi No:17 Zemin Kat 34394</p>
+			<p>Esentepe-Şişli-İSTANBUL</p>
 		</div>
 
 		<div class="row">
