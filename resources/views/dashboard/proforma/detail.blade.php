@@ -31,7 +31,7 @@
 									<p>Zone: {{ $item->zone }}</p>
 								</div>
 								<div class="col-md-4">
-									<p>Seat: {{ $item->seat }}</p>
+									<p>Seat: {{ $item->seat }}</p><p>Status: {{ $item->status }}</p>
 								</div>
 							@endforeach
 						</div>

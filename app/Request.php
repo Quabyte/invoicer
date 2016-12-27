@@ -4,8 +4,8 @@ namespace App;
 
 use Carbon\Carbon;
 use GuzzleHttp\Client;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 
 class Request extends Model
@@ -155,8 +155,17 @@ class Request extends Model
         Item::saveItems($response->getBody());
     }
 
-    public function getBookings($from, $to)
+    /**
+     * Gets the latest bookings.
+     */
+    public function getBookings()
     {
+        $fromTime = Request::where('type', '=', 'booking')->orderBy('created_at', 'desc')->first();
+        $from = $this->convertTime($fromTime);
+
+        $toTime = Carbon::now('Europe/Istanbul');
+        $to = $this->convertTime($to);
+
         $client = new Client([
             'base_uri' => $this->baseUrl,
             'timeout' => $this->timeout
@@ -182,6 +191,12 @@ class Request extends Model
         BookingItem::saveItems($response->getBody());
     }
 
+    /**
+     * Gets the customers list
+     * 
+     * @param  string $to
+     * @param  string $rows
+     */
     public function getCustomers($to, $rows = '3000')
     {
         $from = '2016-12-05T00:00';
@@ -202,6 +217,11 @@ class Request extends Model
         Customer::saveCustomers($response->getBody());
     }
 
+    /**
+     * Returns the latest request time from database.
+     * 
+     * @return string 
+     */
     protected function getLatestRequestTime()
     {
         $latest = DB::table('requests')->orderBy('created_at', 'desc')->where('type', '=', 'report')->first();
@@ -215,6 +235,11 @@ class Request extends Model
         return $latestRequest;
     }
 
+    /**
+     * Converts the Carbon time into Koobin Style
+     * @param  $time
+     * @return string
+     */
     protected function convertTime($time)
     {
         $newTime = str_replace(' ', 'T', $time);
@@ -222,5 +247,27 @@ class Request extends Model
         $realTime = substr($newTime, 0, -3);
 
         return $realTime;
+    }
+
+    /**
+     * Returns the latest 'Booking' request time
+     * 
+     * @return string
+     */
+    protected function checkLatestBookingRequestTime()
+    {
+        $now = Carbon::now('Europe/Istanbul');
+
+        $latestRequest = Request::where('type', '=', 'booking')->orderBy('created_at', 'desc')->first();
+
+        $from = $this->convertTime($now);
+        $to = $this->convertTime($latestRequest);
+
+        $requestValues = [
+            'from' => $from,
+            'to' => $to
+        ];
+
+        return $requestValues;
     }
 }

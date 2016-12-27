@@ -12,7 +12,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					LATEST BOOKINGS
-					<a href="{{ action('RequestController@getBookings', ['baseUrl' => 'https://euroleague.acikgise.com']) }}"
+					<a href="{{ action('RequestController@getBookings') }}"
 					class="btn btn-success btn-xs pull-right">Refresh</a>
 				</div>
 				<div class="panel-body">

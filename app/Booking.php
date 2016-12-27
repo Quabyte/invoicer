@@ -3,6 +3,7 @@
 namespace App;
 
 use Carbon\Carbon;
+use App\BookingItem;
 use Illuminate\Database\Eloquent\Model;
 
 class Booking extends Model
@@ -24,5 +25,12 @@ class Booking extends Model
     		$booking->time = Carbon::parse($json['bookings'][$i]['datetime']);
     		$booking->save();
     	}
+    }
+
+    public static function getItemNames($bookingID)
+    {
+        $items = BookingItem::where('bookind_id', '=', $bookingID)->get();
+
+        return $items;
     }
 }

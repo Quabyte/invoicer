@@ -40,7 +40,18 @@ class ProformaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $proforma = new Proforma;
+        $proforma->booking_id = $request->booking_id;
+        $proforma->generatedBy = Auth::id();
+        $proforma->total = $request->bookingTotal;
+        $proforma->canceled = false;
+        $proforma->customer_name = $request->customerName;
+        $proforma->customer_address = $request->customerAddress;
+        $proforma->created_at = $request->proformaDate;
+        $proforma->updated_at = Carbon::now('Europe/Istanbul');
+        $proforma->save();
+
+        return redirect()->action('ProformaController@generateProforma', ['id' => $proforma->id]);
     }
 
     /**
@@ -95,6 +106,10 @@ class ProformaController extends Controller
 
     public function generateProforma($id)
     {
-
+        $proforma = Proforma::findOrFail($id);
+        $items = Booking::getItemNames($proforma->booking_id);
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadView('dashboard.proforma.pdf', compact('proforma', 'items'));
+        return $pdf->stream();
     }
 }

@@ -3,11 +3,11 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title">Invoice</h4>
+				<h4 class="modal-title">Proforma</h4>
 			</div>
 
 			<div class="modal-body">
-				<form action="{{ action('InvoiceController@store') }}" method="POST">
+				<form action="{{ action('ProformaController@store') }}" method="POST">
 					{{ csrf_field() }}
 					<div class="row">
 						<div class="col-md-6">
@@ -39,7 +39,8 @@
 						</div>
 					</div>
 
-					
+					<input type="hidden" name="bookingID" value="{{ $booking->booking_id }}">
+					<input type="hidden" name="bookingTotal" value="{{ $total }}">
 					<input type="submit" class="btn btn-success" value="Generate"></input>
 
 				</form>
