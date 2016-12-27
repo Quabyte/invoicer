@@ -29,7 +29,7 @@ class Booking extends Model
 
     public static function getItemNames($bookingID)
     {
-        $items = BookingItem::where('bookind_id', '=', $bookingID)->get();
+        $items = BookingItem::where('booking_id', '=', $bookingID)->get();
 
         return $items;
     }
