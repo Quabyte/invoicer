@@ -11,14 +11,11 @@
 </head>
 <body>
 	<div class="container">
-		<div class="row">
-			<div class="col-md-offset-4"></div>
-			<div class="col-md-4">
-				<img src="{{ asset('images/acikgise-logo.png') }}">
-			</div>
-			<div class="col-md-4">
-				<p>{{ $proforma->created_at }}</p>
-			</div>
+		<div class="image">
+			<img src="{{ asset('images/acikgise-logo.png') }}">
+		</div>
+		<div class="date">
+			<p>{{ $proforma->created_at }}</p>
 		</div>
 
 		<div class="row">
