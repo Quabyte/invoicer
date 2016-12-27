@@ -65,7 +65,7 @@
 							<p>2017 Turkish Airlines EuroLeague Final Four Istanbul</p>
 						</td>
 						<td>
-							<p>{{}}</p>
+							<p></p>
 						</td>
 						<td>
 							<p>{{ $proforma->total }}</p>
