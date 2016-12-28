@@ -64,9 +64,7 @@
 							<p>2017 Turkish Airlines EuroLeague Final Four Istanbul</p>
 						</td>
 						<td width="30%">
-							@foreach ($items as $item)
-								<p>{{ $item->area }}</p>
-							@endforeach
+							<p>{{ $proforma->item_count }} x {{ $proforma->item_name }}</p>
 						</td>
 						<td width="30%">
 							<p>{{ $proforma->total }} EUR</p>

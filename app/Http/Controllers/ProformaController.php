@@ -49,6 +49,8 @@ class ProformaController extends Controller
         $proforma->canceled = false;
         $proforma->customer_name = $request->customerName;
         $proforma->customer_address = $request->customerAddress;
+        $proforma->item_name = $request->itemName;
+        $proforma->item_count = $request->itemCount;
         $proforma->created_at = $request->proformaDate;
         $proforma->updated_at = Carbon::now('Europe/Istanbul');
         $proforma->save();
@@ -109,9 +111,8 @@ class ProformaController extends Controller
     public function generateProforma($id)
     {
         $proforma = Proforma::findOrFail($id);
-        $items = Booking::getItemNames($proforma->booking_id);
         $pdf = App::make('dompdf.wrapper');
-        $pdf->loadView('dashboard.proforma.pdf', compact('proforma', 'items'));
+        $pdf->loadView('dashboard.proforma.pdf', compact('proforma'));
         return $pdf->stream();
     }
 }
