@@ -77,6 +77,12 @@
 		<div class="left">
 			<p><b>Bank Name:</b> GARANTI BANK</p>
 			<p><b>Bank Branch Name:</b> RUMELI CADDESI BRANCH</p>
+			<p><b>Branch Number:</b> 406</p>
+			<p><b>Account Number:</b> 908 34 33</p>
+			<p><b>SWIFT Code:</b> TGBATRISXXX</p>
+			<p><b>IBAN:</b> TR37 0006 2000 4060 0009 0834 33</p>
+			<p><b>Branch Address:</b> Rumeli Cad. No:48 Nişantaşı-Şişli-İstanbul/TURKEY</p>
+			<p style="margin-top: 20px; color: red">Please note all bank transfer expenses will be covered by you.</p>
 		</div>
 	</div>
 </body>
