@@ -10,7 +10,7 @@
 
 @section('content')
 <div class="container">
-    <div class="row" style="margin-bottom: 20px;">
+    {{-- <div class="row" style="margin-bottom: 20px;">
         <div class="col-md-1 col-md-offset-2"></div>
         <div class="col-md-2">
             <a href="{{ action('ProformaController@index') }}" class="btn btn-default btn-block">Generate Proforma</a>
@@ -25,7 +25,7 @@
                 <a href="#" class="btn btn-success btn-block">Generate Report</a>
             </div>
         @endif
-    </div>
+    </div> --}}
     
     <div class="row">
         <div class="panel panel-default">

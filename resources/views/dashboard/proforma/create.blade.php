@@ -9,11 +9,13 @@
 			<div class="modal-body">
 				<form action="{{ action('ProformaController@store') }}" method="POST">
 					{{ csrf_field() }}
+					@foreach ($assignee as $customer)
+
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="customerName">Customer Name</label>
-								<input type="text" name="customerName" class="form-control">
+								<input type="text" name="customerName" class="form-control" value="{{ $customer->first_name }}">
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -28,47 +30,35 @@
 						<div class="col-md-12">
 							<div class="form-group">
 								<label for="customerAddress">Customer Address</label>
-								<input type="text" name="customerAddress" class="form-control">
+								<input type="text" name="customerAddress" class="form-control" value="{{ $customer->address . ' ' . $customer->zip_code . ' ' . $customer->city . ' ' . $customer->province . ' ' . $customer->country }}">
 							</div>
 						</div>
 					</div>
 					
 					<div class="row">
-						<div class="col-md-6">
-							<div class="form-group">
-								<label for="itemCount">Seat Count</label>
-								<select class="form-control" name="itemCount">
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-									<option value="6">6</option>
-									<option value="7">7</option>
-									<option value="8">8</option>
-									<option value="9">9</option>
-									<option value="10">10</option>
-								</select>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label for="itemName">Package Name</label>
-								<input type="text" name="itemName" class="form-control">
-							</div>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-md-6" style="padding-top: 30px;">
+						<div class="col-md-3" style="padding-top: 30px;">
 							<p>Price: {{ $total }}€</p>
+						</div>
+						<div class="col-md-3" style="padding-top: 30px;">
+							<p>VAT: {{ $vat = round(($total - $total / 1.18), 2) }}€</p>
+						</div>
+						<div class="col-md-3" style="padding-top: 30px;">
+							<p>TAX: {{ $tax = round(($total - $vat) - (($total - $vat) / 1.1)) }}€</p>
+						</div>
+						<div class="col-md-3" style="padding-top: 30px;">
+							<p>Net Price: {{ $netPrice = $total - $vat - $tax }}€</p>
 						</div>
 					</div>
 
 					<input type="hidden" name="bookingID" value="{{ $booking->booking_id }}">
 					<input type="hidden" name="bookingTotal" value="{{ $total }}">
+					<input type="hidden" name="vat" value="{{ $vat }}">
+					<input type="hidden" name="tax" value="{{ $tax }}">
+					<input type="hidden" name="netPrice" value="{{ $netPrice }}">
+					<input type="hidden" name="customerID" value="{{ $customer->id }}">
 					<input type="submit" class="btn btn-success" value="Generate"></input>
 
+					@endforeach
 				</form>
 			</div>
 		</div>

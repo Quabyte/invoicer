@@ -12,6 +12,7 @@ Route::resource('/invoice', 'InvoiceController');
 Route::resource('/proforma', 'ProformaController');
 Route::get('/preview/{id}', 'InvoiceController@preview');
 Route::get('/proforma-preview/{id}', 'ProformaController@generateProforma');
+Route::get('/generated-proformas', 'ProformaController@generatedList');
 Route::resource('/role', 'RolesController');
 Route::resource('/permission', 'PermissionsController');
 

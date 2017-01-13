@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html">
 
     <link rel="stylesheet" type="text/css" href="{{ asset('css/proforma.css') }}">
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/purecss@0.6.1/build/tables-min.css">
@@ -22,12 +23,12 @@
 		</div>
 
 		<div class="center">
-			<h2>AÇIKGISE BILET HIZMETLERI ve ORGANIZASYON A.S.</h2>
+			<h2>ACIKGISE BILET HIZMETLERI ve ORGANIZASYON A.S.</h2>
 		</div>
 
 		<div class="center">
-			<p class="info">Yıldız Posta Caddesi Cerrahoğlu İş Merkezi No:17 Zemin Kat 34394</p>
-			<p class="info">Esentepe-Şişli-İSTANBUL</p>
+			<p class="info">Yildiz Posta Caddesi Cerrahoglu Is Merkezi No:17 Zemin Kat 34394</p>
+			<p class="info">Esentepe-Sisli-ISTANBUL</p>
 		</div>
 
 		<div class="center">
@@ -45,8 +46,8 @@
 						<td width="40%">
 							<b>TO</b>
 						</td>
-						<td width="30%">{{ $proforma->customer_name }}</td>
-						<td width="30%">{{ $proforma->customer_address }}</td>
+						<td width="30%">{{ $customer->first_name }}</td>
+						<td width="30%">{{ $customer->address . ' ' . $customer->city . ' ' . $customer->province . ' ' . $customer->zip_code . ' ' . $customer->country}}</td>
 					</tr>
 					<tr>
 						<td width="40%">
@@ -64,10 +65,33 @@
 							<p>2017 Turkish Airlines EuroLeague Final Four Istanbul</p>
 						</td>
 						<td width="30%">
-							<p>{{ $proforma->item_count }} x {{ $proforma->item_name }}</p>
+							<p>{{ $proforma->ticket_counts }} x {{ $proforma->category_names }} Tickets</p>
 						</td>
 						<td width="30%">
 							<p>{{ $proforma->total }} EUR</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="40%" style="height: 50px;"></td>
+						<td width="30%"></td>
+						<td width="30%"></td>
+					</tr>
+					<tr>
+						<td width="40%">PRICE BREAKDOWN</td>
+						<td width="30%">
+							<p style="font-size: 13px;">VAT: {{ $proforma->vat }} EUR</p>
+							<p style="font-size: 13px;">TAX: {{ $proforma->tax }} EUR</p>
+							<p style="font-size: 13px;">NET PRICE: {{ $proforma->net_price }} EUR</p>
+						</td>
+						<td width="30%">
+							
+						</td>
+					</tr>
+					<tr>
+						<td width="40%"></td>
+						<td width="30%"></td>
+						<td width="30%">
+							<p><strong>TOTAL: {{ $proforma->total }} EUR</strong></p>
 						</td>
 					</tr>
 				</tbody>
@@ -81,8 +105,9 @@
 			<p><b>Account Number:</b> 908 34 33</p>
 			<p><b>SWIFT Code:</b> TGBATRISXXX</p>
 			<p><b>IBAN:</b> TR37 0006 2000 4060 0009 0834 33</p>
-			<p><b>Branch Address:</b> Rumeli Cad. No:48 Nişantaşı-Şişli-İstanbul/TURKEY</p>
+			<p><b>Branch Address:</b> Rumeli Cad. No:48 Nisantasi-Sisli-Istanbul/TURKEY</p>
 			<p style="margin-top: 20px; color: red">Please note all bank transfer expenses will be covered by you.</p>
+			<p style="color: red;">PAYMENT MUST BE DONE IN EUROS</p>
 		</div>
 	</div>
 </body>

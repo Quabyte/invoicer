@@ -54,6 +54,7 @@ class Request extends Model
 
     /**
      * Request constructor.
+     * 
      * @param string $baseUrl
      * @param int $timeout
      */
@@ -75,13 +76,7 @@ class Request extends Model
         if ($lastRequest == null) {
             $this->authenticate();
         } else {
-            $lastRequestTime = Carbon::parse($lastRequest->created_at);
-
-            if (Carbon::now('Europe/Istanbul')->subMinutes(20)->gt($lastRequestTime)) {
-                $this->authenticate();
-            } else {
-                $this->apiKey = $lastRequest->key_used;
-            }
+            $this->authenticate();
         }
     }
 
@@ -158,13 +153,11 @@ class Request extends Model
     /**
      * Gets the latest bookings.
      */
-    public function getBookings()
+    public function getBookings($from)
     {
-        $fromTime = Request::where('type', '=', 'booking')->orderBy('created_at', 'desc')->first();
-        $from = $this->convertTime($fromTime);
 
         $toTime = Carbon::now('Europe/Istanbul');
-        $to = $this->convertTime($to);
+        $to = $this->convertTime($toTime);
 
         $client = new Client([
             'base_uri' => $this->baseUrl,
@@ -217,6 +210,24 @@ class Request extends Model
         Customer::saveCustomers($response->getBody());
     }
 
+    public function getSingleCustomer($customerID)
+    {
+        $client = new Client([
+            'base_uri' => $this->baseUrl,
+            'timeout' => $this->timeout
+        ]);
+
+        $url = $this->apiURL . 'customer/' . $customerID;
+
+        $response = $client->request('GET', $url, [
+            'headers' => [
+                'Authorization' => $this->apiKey
+            ]
+        ]);
+
+        Customer::saveCustomers($response->getBody());
+    }
+
     /**
      * Returns the latest request time from database.
      * 
@@ -237,6 +248,7 @@ class Request extends Model
 
     /**
      * Converts the Carbon time into Koobin Style
+     * 
      * @param  $time
      * @return string
      */

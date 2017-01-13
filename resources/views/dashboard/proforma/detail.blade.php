@@ -16,24 +16,29 @@
 
 				<div class="panel-body">
 					<div class="row">
-						<div class="col-md-6">
-							<h4>Booking details</h4>
+						<div class="col-md-4">
+							<h4>Booking Details</h4>
 							<p>Booking Details: {{ $booking->booking_id }}</p>
 							<p>Booking Time: {{ $booking->time }}</p>
 						</div>
-						<div class="col-md-6">
+						<div class="col-md-4">
 							<h4>Booking Items</h4>
-							@foreach ($items as $item)
-								<div class="col-md-4">
-									<p>Area: {{ $item->area }}</p>
-								</div>
-								<div class="col-md-4">
-									<p>Zone: {{ $item->zone }}</p>
-								</div>
-								<div class="col-md-4">
-									<p>Seat: {{ $item->seat }}</p><p>Status: {{ $item->status }}</p>
-								</div>
+							@foreach ($tickets as $ticket => $count)
+								<p>{{ $count . ' x ' . $ticket . ' Tickets' }}</p>
 							@endforeach
+						</div>
+						<div class="col-md-4">
+							<h4>Customer Details</h4>
+							@if ($assignee->count() > 0)
+								@foreach ($assignee as $customer)
+									<p>Name: {{ $customer->first_name }}</p>
+									<p>Address: {{ $customer->address }}</p>
+									<p>ZIP: {{ $customer->zip_code }}</p>
+									<p>City: {{ $customer->city }} / Country: {{ $customer->country }}</p>
+								@endforeach
+							@else
+								<p>No assigned customers found!</p>
+							@endif
 						</div>
 					</div>
 				</div>

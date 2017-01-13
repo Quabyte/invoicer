@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Booking;
+use App\Customer;
 use App\Proforma;
 use Carbon\Carbon;
 use App\BookingItem;
@@ -47,10 +48,18 @@ class ProformaController extends Controller
         $proforma->generatedBy = Auth::id();
         $proforma->total = $request->bookingTotal;
         $proforma->canceled = false;
-        $proforma->customer_name = $request->customerName;
-        $proforma->customer_address = $request->customerAddress;
-        $proforma->item_name = $request->itemName;
-        $proforma->item_count = $request->itemCount;
+        $proforma->item_name = ' ';
+        $proforma->item_count = 0;
+
+        $tickets = BookingItem::getAreaCount($proforma->booking_id);
+
+        $proforma->category_names = implode('.', array_keys($tickets));
+        $proforma->ticket_counts = implode('.', array_values($tickets));
+        $proforma->generate_count = 1;
+        $proforma->vat = $request->vat;
+        $proforma->tax = $request->tax;
+        $proforma->net_price = $request->netPrice;
+        $proforma->customer_id = $request->customerID;
         $proforma->created_at = $request->proformaDate;
         $proforma->updated_at = Carbon::now('Europe/Istanbul');
         $proforma->save();
@@ -67,11 +76,13 @@ class ProformaController extends Controller
     public function show($id)
     {
         $booking = Booking::findOrFail($id);
+        $tickets = BookingItem::getAreaCount($booking->booking_id);
         $items = BookingItem::where('booking_id', '=', $booking->booking_id)->get();
+        $assignee = Customer::where('id', '=', $booking->customer_id)->get();
         $timeNow = Carbon::now('Europe/Istanbul');
         $total = BookingItem::calculateTotal($booking->booking_id);
 
-        return view('dashboard.proforma.detail', compact('booking', 'items', 'timeNow', 'total'));
+        return view('dashboard.proforma.detail', compact('booking', 'items', 'assignee', 'timeNow', 'tickets', 'total'));
     }
 
     /**
@@ -108,11 +119,25 @@ class ProformaController extends Controller
         //
     }
 
+    /**
+     * Generates the proforma and shows the PDF version
+     * 
+     * @param  integer $id Proforma ID
+     * @return response
+     */
     public function generateProforma($id)
     {
         $proforma = Proforma::findOrFail($id);
+        $customer = Customer::where('id', '=', $proforma->customer_id)->first();
         $pdf = App::make('dompdf.wrapper');
-        $pdf->loadView('dashboard.proforma.pdf', compact('proforma'));
+        $pdf->loadView('dashboard.proforma.pdf', compact('proforma', 'customer'));
         return $pdf->stream();
+    }
+
+    public function generatedList()
+    {
+        $proformas = Proforma::all();
+
+        return view('dashboard.proforma.generatedAll', compact('proformas'));
     }
 }
