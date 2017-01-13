@@ -12,8 +12,8 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					LATEST BOOKINGS
-					<a href="{{ action('RequestController@getBookings', ['baseUrl' => 'https://euroleague.acikgise.com']) }}"
-					class="btn btn-success btn-xs pull-right">Refresh</a>
+					{{-- <a href="{{ action('RequestController@getBookings', ['baseUrl' => 'https://euroleague.acikgise.com']) }}"
+					class="btn btn-success btn-xs pull-right">Refresh</a> --}}
 				</div>
 				<div class="panel-body">
 					<table class="table table-striped table-bordered" id="dataTable">
