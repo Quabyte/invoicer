@@ -126,7 +126,7 @@ class Request extends Model
             'timeout' => $this->timeout
         ]);
 
-        $from = '2016-12-21T13:50';
+        $from = '2016-12-12T15:55';
 
         $withItems ? $withItems = 'true' : $withItems = 'false';
 
