@@ -32,7 +32,7 @@ class RequestController extends Controller
     public function getCustomer()
     {
         $customerRequest = new KoobinRequest('https://euroleague.acikgise.com', 600);
-        $customerRequest->getCustomers('2016-12-17T00:00', '2017-01-16T14:15');
+        $customerRequest->getCustomers('2016-12-14T17:12', '2017-01-16T14:15');
 
         return redirect()->back();
     }
