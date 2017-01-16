@@ -23,7 +23,7 @@
                     <li>
                         <a href="{{ action('CompanyController@index') }}">Companies</a>
                     </li>
-                @elseif(Auth::check() && (App\User::checkPermission('invoice') || App\User::checkPermission('all')))
+                @elseif(Auth::check())
                     <li class="dropdown">
                         <a href="{{ action('ProformaController@index') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             Bookings <span class="caret"></span>
