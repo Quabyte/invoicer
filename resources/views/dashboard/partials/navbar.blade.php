@@ -28,19 +28,19 @@
                     <a href="{{ action('ProformaController@index') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         Bookings <span class="caret"></span>
                     </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{{ action('ProformaController@index') }}">
+                                <i class="glyphicon glyphicon-plus"></i> Generate Proforma
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ action('ProformaController@generatedList') }}">
+                                <i class="glyphicon glyphicon-list-alt"></i> List of Proformas
+                            </a>
+                        </li>
+                    </ul>   
                 </li>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a href="{{ action('ProformaController@index') }}">
-                            <i class="glyphicon glyphicon-plus"></i> Generate Proforma
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ action('ProformaController@generatedList') }}">
-                            <i class="glyphicon glyphicon-list-alt"></i> List of Proformas
-                        </a>
-                    </li>
-                </ul>               
             </ul>
 
             <!-- Right Side Of Navbar -->
