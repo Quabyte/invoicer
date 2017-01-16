@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Booking;
 use App\Customer;
 use App\Proforma;
@@ -84,8 +85,9 @@ class ProformaController extends Controller
         $assignee = Customer::where('id', '=', $booking->customer_id)->get();
         $timeNow = Carbon::now('Europe/Istanbul');
         $total = BookingItem::calculateTotal($booking->booking_id);
+        $proforma = Proforma::where('booking_id', '=', $booking->booking_id)->first();
 
-        return view('dashboard.proforma.detail', compact('booking', 'items', 'assignee', 'timeNow', 'tickets', 'total'));
+        return view('dashboard.proforma.detail', compact('booking', 'items', 'assignee', 'timeNow', 'tickets', 'total', 'proforma'));
     }
 
     /**
@@ -96,7 +98,10 @@ class ProformaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $proforma = Proforma::findOrFail($id);
+        $user = User::findOrFail($proforma->generatedBy);
+
+        return view('dashboard.proforma.edit', compact('proforma', 'user'));
     }
 
     /**
@@ -108,7 +113,17 @@ class ProformaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $proforma = Proforma::findOrFail($id);
+        $proforma->total = $request->total;
+        $proforma->created_at = $request->createdAt;
+        $proforma->updated_at = Carbon::now('Europe/Istanbul');
+        $proforma->vat = $request->vat;
+        $proforma->tax = $request->tax;
+        $proforma->net_price = $request->net;
+        $proforma->generate_count = $proforma->generate_count + 1;
+        $proforma->save();
+
+        return redirect()->action('ProformaController@generateProforma', ['id' => $proforma->id]);
     }
 
     /**

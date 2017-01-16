@@ -14,4 +14,15 @@ class Proforma extends Model
     ];
 
     protected $table = 'proformas';
+
+    public static function checkIfGenerated($bookigRef)
+    {
+    	$proformaCount = Proforma::where('booking_id', '=', $bookigRef)->count();
+
+    	if ($proformaCount > 0) {
+    		return false;
+    	}
+
+    	return true;
+    }
 }

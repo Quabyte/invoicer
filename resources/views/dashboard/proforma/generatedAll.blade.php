@@ -16,6 +16,8 @@
 							<tr>
 								<th>Booking ID</th>
 								<th>Total</th>
+								<th>Customer</th>
+								<th>Proforma Date</th>
 								<th>Actions</th>
 							</tr>
 						</thead>
@@ -25,12 +27,14 @@
 								<tr>
 									<td>{{ $proforma->booking_id }}</td>
 									<td>{{ $proforma->total }}</td>
+									<td><?php $customer = App\Customer::where('id', '=', $proforma->customer_id)->first(); ?> {{ $customer->first_name }}</td>
+									<td>{{ $proforma->created_at }}</td>
 									<td>
-										<a href="#" class="btn btn-xs btn-default">
-											Edit
+										<a href="{{ action('ProformaController@edit', ['id' => $proforma->id]) }}" class="btn btn-xs btn-default">
+											<i class="glyphicon glyphicon-pencil"></i> Edit
 										</a>
 										<a href="{{ action('ProformaController@generateProforma', ['id' => $proforma->id]) }}" class="btn btn-xs btn-primary">
-											View
+											<i class="glyphicon glyphicon-eye-open"></i> View
 										</a>
 									</td>
 								</tr>
