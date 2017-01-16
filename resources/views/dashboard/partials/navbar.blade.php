@@ -23,12 +23,12 @@
                     <li>
                         <a href="{{ action('CompanyController@index') }}">Companies</a>
                     </li>
-                    <li class="dropdown">
-                        <a href="{{ action('ProformaController@index') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            Bookings <span class="caret"></span>
-                        </a>
-                    </li>
                 @endif
+                <li class="dropdown">
+                    <a href="{{ action('ProformaController@index') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        Bookings <span class="caret"></span>
+                    </a>
+                </li>
                 <ul class="dropdown-menu">
                     <li>
                         <a href="{{ action('ProformaController@index') }}">
