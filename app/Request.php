@@ -75,6 +75,10 @@ class Request extends Model
 
         if ($lastRequest == null) {
             $this->authenticate();
+
+        } elseif ($lastRequest->created_at > Carbon::now('Europe/Istanbul')->subMinutes(20)) {
+            $this->apiKey = $lastRequest->key_used;
+            
         } else {
             $this->authenticate();
         }
@@ -126,7 +130,8 @@ class Request extends Model
             'timeout' => $this->timeout
         ]);
 
-        $from = '2016-12-12T15:55';
+        $from = $this->getLatestRequestTime('report');
+        $to = $this->getNowTime();
 
         $withItems ? $withItems = 'true' : $withItems = 'false';
 
@@ -206,6 +211,14 @@ class Request extends Model
             ]
         ]);
 
+        DB::table('requests')->insert([
+            'user_id' => Auth::id(),
+            'key_used' => $this->apiKey,
+            'type' => 'customers',
+            'created_at' => Carbon::now('Europe/Istanbul'),
+            'updated_at' => Carbon::now('Europe/Istanbul')
+        ]);
+
         Customer::saveCustomers($response->getBody());
     }
 
@@ -237,9 +250,9 @@ class Request extends Model
      * 
      * @return string 
      */
-    protected function getLatestRequestTime()
+    protected function getLatestRequestTime($type)
     {
-        $latest = DB::table('requests')->orderBy('created_at', 'desc')->where('type', '=', 'report')->first();
+        $latest = DB::table('requests')->orderBy('created_at', 'desc')->where('type', '=', $type)->first();
 
         if ($latest) {
             $latestRequest = $this->convertTime($latest->created_at);
@@ -285,5 +298,16 @@ class Request extends Model
         ];
 
         return $requestValues;
+    }
+
+    protected function saveRequestTime($apiKey, $type)
+    {
+        DB::table('requests')->insert([
+            'user_id' => Auth::id(),
+            'key_used' => $apiKey,
+            'type' => $type,
+            'created_at' => Carbon::now('Europe/Istanbul'),
+            'updated_at' => Carbon::now('Europe/Istanbul')
+        ]);
     }
 }
