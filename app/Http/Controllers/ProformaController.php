@@ -100,8 +100,9 @@ class ProformaController extends Controller
     {
         $proforma = Proforma::findOrFail($id);
         $user = User::findOrFail($proforma->generatedBy);
+        $customer = Customer::where('id', '=', $proforma->customer_id)->first();
 
-        return view('dashboard.proforma.edit', compact('proforma', 'user'));
+        return view('dashboard.proforma.edit', compact('proforma', 'user', 'customer'));
     }
 
     /**

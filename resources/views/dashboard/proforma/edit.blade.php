@@ -69,6 +69,21 @@
 								</div>
 							</div>
 						</div>
+
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="customerName">Customer Name</label>
+									<input type="text" name="customerName" class="form-control" value="{{ $customer->first_name }}">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="customerAddress">Customer Address</label>
+									<textarea class="form-control" name="customerAddress">{{ $customer->address . ' ' . $customer->city . ' ' . $customer->province . ' ' . $customer->zip_code . ' ' . $customer->country }}</textarea>
+								</div>
+							</div>
+						</div>
 						
 						<div class="row">
 							<div class="col-md-12">
