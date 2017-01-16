@@ -28,20 +28,19 @@
                             Bookings <span class="caret"></span>
                         </a>
                     </li>
-                @elseif (Auth::check() && App\User::checkPermission('invoice'))
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="{{ action('ProformaController@index') }}">
-                                <i class="glyphicon glyphicon-plus"></i> Generate Proforma
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ action('ProformaController@generatedList') }}">
-                                <i class="glyphicon glyphicon-list-alt"></i> List of Proformas
-                            </a>
-                        </li>
-                    </ul>           
                 @endif
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="{{ action('ProformaController@index') }}">
+                            <i class="glyphicon glyphicon-plus"></i> Generate Proforma
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ action('ProformaController@generatedList') }}">
+                            <i class="glyphicon glyphicon-list-alt"></i> List of Proformas
+                        </a>
+                    </li>
+                </ul>               
             </ul>
 
             <!-- Right Side Of Navbar -->
