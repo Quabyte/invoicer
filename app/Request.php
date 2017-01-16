@@ -155,7 +155,7 @@ class Request extends Model
      */
     public function getBookings($from)
     {
-
+        
         $toTime = Carbon::now('Europe/Istanbul');
         $to = $this->convertTime($toTime);
 
@@ -212,6 +212,11 @@ class Request extends Model
 
     public function getSingleCustomer($customerID)
     {
+        
+        if (Customer::where('id', '=', $customerID)->count() > 0) {
+            return true;
+        }
+
         $client = new Client([
             'base_uri' => $this->baseUrl,
             'timeout' => $this->timeout
@@ -238,7 +243,7 @@ class Request extends Model
         $latest = DB::table('requests')->orderBy('created_at', 'desc')->where('type', '=', 'report')->first();
 
         if ($latest) {
-            $latestRequest = $this->convertTime($latest->updated_at);
+            $latestRequest = $this->convertTime($latest->created_at);
         } else {
             $latestRequest = '2016-12-07T00:00';
         }
@@ -266,7 +271,7 @@ class Request extends Model
      * 
      * @return string
      */
-    protected function checkLatestBookingRequestTime()
+    public function checkLatestBookingRequestTime()
     {
         $now = Carbon::now('Europe/Istanbul');
 
