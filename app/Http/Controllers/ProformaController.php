@@ -55,7 +55,10 @@ class ProformaController extends Controller
 
         $proforma->category_names = implode('.', array_keys($tickets));
         $proforma->ticket_counts = implode('.', array_values($tickets));
-        $proforma->generate_count = 1;
+
+        $existingCount = Proforma::where('booking_id', '=', $request->bookingID)->count();
+
+        $proforma->generate_count = $existingCount + 1;
         $proforma->vat = $request->vat;
         $proforma->tax = $request->tax;
         $proforma->net_price = $request->netPrice;
