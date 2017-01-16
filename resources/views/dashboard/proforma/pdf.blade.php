@@ -42,7 +42,7 @@
 		<div class="center">
 			<table class="pure-table pure-table-bordered">
 				<tbody>
-					<tr>
+					<tr style="max-height: 70px;">
 						<td width="40%">
 							<b>TO</b>
 						</td>
