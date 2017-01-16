@@ -13,7 +13,7 @@
 </head>
 <body>
 	<div class="wrapper">
-		<p style="margin-top: 40px; margin-left: 50px;">Proforma-{{ $proforma->generate_count }}</p>
+		<p style="margin-top: 10px; margin-left: 50px;">Proforma-{{ $proforma->generate_count }}</p>
 		<div class="date">
 			<p>{{ $proforma->created_at }}</p>
 		</div>
