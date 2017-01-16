@@ -73,6 +73,12 @@ class BookingItem extends Model
         $areas = BookingItem::where('booking_id', '=', $bookingRef)->get(['area']);
         $list = [];
         $count = [
+            "Courtside Row-1" => 0,
+            "Courtside Row-2" => 0,
+            "Courtside Row-3" => 0,
+            "Gold Suites" => 0,
+            "Silver Suites" => 0,
+            "Bronze Suites" => 0,
             "Gold Hospitality" => 0,
             "PL1" => 0,
             "PL2" => 0,
@@ -81,14 +87,33 @@ class BookingItem extends Model
             "PL5" => 0,
             "PL6" => 0,
             "PL7" => 0,
+            "PL7 Low Visibility" => 0,
             "PL8" => 0,
             "PL9" => 0,
             "PL10" => 0,
-            "PL10-Low Visibility" => 0
+            "PL10-Low-Visibility" => 0
         ];
 
         foreach ($areas as $area) {
             switch ($area->area) {
+                case 'Courtside Row-1':
+                    $count['Courtside Row-1'] = $count['Courtside Row-1'] + 1;
+                    break;
+                case 'Courtside Row-2':
+                    $count['Courtside Row-2'] = $count['Courtside Row-2'] + 1;
+                    break;
+                case 'Courtside Row-3':
+                    $count['Courtside Row-3'] = $count['Courtside Row-3'] + 1;
+                    break;
+                case 'Gold Suites':
+                    $count['Gold Suites'] = $count['Gold Suites'] + 1;
+                    break;
+                case 'Silver Suites':
+                    $count['Silver Suites'] = $count['Silver Suites'] + 1;
+                    break;
+                case 'Bronze Suites':
+                    $count['Bronze Suites'] = $count['Bronze Suites'] + 1;
+                    break;
                 case 'Gold Hospitality':
                     $count['Gold Hospitality'] = $count['Gold Hospitality'] + 1;
                     break;
@@ -113,6 +138,9 @@ class BookingItem extends Model
                 case 'PL7':
                     $count['PL7'] = $count['PL7'] + 1;
                     break;
+                case 'PL7 Low Visibility':
+                    $count['PL7 Low Visibility'] = $count['PL7 Low Visibility'] + 1;
+                    break;
                 case 'PL8':
                     $count['PL8'] = $count['PL8'] + 1;
                     break;
@@ -121,6 +149,9 @@ class BookingItem extends Model
                     break;
                 case 'PL10':
                     $count['PL10'] = $count['PL10'] + 1;
+                    break;
+                case 'PL10-Low-Visibility':
+                    $count['PL10-Low-Visibility'] = $count['PL10-Low-Visibility'] + 1;
                     break;
             }
         }
