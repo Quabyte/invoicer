@@ -19,7 +19,7 @@
 		</div>
 
 		<div class="image">
-			<img src="{{ asset('images/acikgise-logo.png') }}" style="max-width: 300px; margin: 100px 250px 20px 250px;">
+			<img src="{{ asset('images/acikgise-logo.png') }}" style="max-width: 300px; margin: 100px 250px 20px 325px; max-height: 50px;">
 		</div>
 
 		<div class="center">
