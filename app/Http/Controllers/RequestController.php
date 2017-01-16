@@ -24,7 +24,7 @@ class RequestController extends Controller
     public function getBookings()
     {
         $newRequest = new KoobinRequest('https://euroleague.acikgise.com', 600);
-        $newRequest->getBookings('2016-12-15T12:00');
+        $newRequest->getBookings('2016-12-27T14:34');
 
         return redirect()->back();
     }
