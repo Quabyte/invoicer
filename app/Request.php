@@ -126,7 +126,7 @@ class Request extends Model
             'timeout' => $this->timeout
         ]);
 
-        $from = $this->getLatestRequestTime();
+        $from = '2016-12-21-13:50';
 
         $withItems ? $withItems = 'true' : $withItems = 'false';
 
