@@ -23,6 +23,7 @@
                     <li>
                         <a href="{{ action('CompanyController@index') }}">Companies</a>
                     </li>
+                    <a href="{{ action('RequestController@getCustomer') }}" type="button" class="btn btn-warning btn-sm navbar-btn">Get Customers</a>
                 @endif
                 @if(Auth::check())
                     <li class="dropdown">

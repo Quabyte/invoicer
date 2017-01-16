@@ -190,9 +190,9 @@ class Request extends Model
      * @param  string $to
      * @param  string $rows
      */
-    public function getCustomers($to, $rows = '3000')
+    public function getCustomers($to, $from, $rows = '3000')
     {
-        $from = '2016-12-05T00:00';
+        $from = '2016-12-21T10:45';
 
         $client = new Client([
             'base_uri' => $this->baseUrl,

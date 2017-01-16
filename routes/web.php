@@ -4,6 +4,7 @@ Route::get('/', 'HomeController@index');
 
 Route::get('/request', 'RequestController@makeRequest');
 Route::get('/getBookings', 'RequestController@getBookings');
+Route::get('/getCustomer', 'RequestController@getCustomer');
 
 Route::resource('/company', 'CompanyController');
 Route::resource('/user', 'UsersController');
