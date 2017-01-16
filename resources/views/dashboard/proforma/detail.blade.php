@@ -5,6 +5,9 @@
 @section('content')
 	<div class="container">
 		<div class="row">
+			<a href="{{ action('ProformaController@index') }}" class="btn btn-default btn-sm" style="margin-bottom: 25px;">
+				<i class="glyphicon glyphicon-chevron-left"></i> Back
+			</a>
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					BOOKING REF: {{ $booking->booking_id }}
