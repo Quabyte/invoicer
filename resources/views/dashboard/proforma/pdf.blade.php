@@ -72,11 +72,6 @@
 						</td>
 					</tr>
 					<tr>
-						<td width="40%" style="height: 50px;"></td>
-						<td width="30%"></td>
-						<td width="30%"></td>
-					</tr>
-					<tr>
 						<td width="40%">PRICE BREAKDOWN</td>
 						<td width="30%">
 							<p style="font-size: 13px;">VAT: {{ $proforma->vat }} EUR</p>
