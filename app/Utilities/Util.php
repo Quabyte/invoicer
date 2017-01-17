@@ -2,6 +2,9 @@
 
 namespace App\Utilities;
 
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+
 class Util
 {	
 
@@ -43,21 +46,6 @@ class Util
 	}
 
 	/**
-	 * Converts time format to match the API
-	 * 
-	 * @param  dateTime $time
-	 * @return dateTime
-	 */
-	public static function convertTimeFormat($time)
-	{
-		$newTime = str_replace(' ', 'T', $time);
-
-		$converted = substr($newTime, 0, -3);
-
-		return $converted;
-	}
-
-	/**
 	 * Returns the latest request time based on request type
 	 * 
 	 * @param  string $type Request type
@@ -67,7 +55,7 @@ class Util
 	{
 		$latest = DB::table('requests')->orderBy('created_at', 'desc')->where('type', '=', $type)->first();
 
-		$latestRequest = static::convertTime($lates->created_at);
+		$latestRequest = static::convertTime($latest->created_at);
 
 		return $latestRequest;
 	}

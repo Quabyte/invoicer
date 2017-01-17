@@ -4,6 +4,7 @@ namespace App;
 
 use Carbon\Carbon;
 use GuzzleHttp\Client;
+use App\Utilities\Util;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
@@ -105,14 +106,7 @@ class Request extends Model
         $decodedResponse = \GuzzleHttp\json_decode($response->getBody(), true);
 
         if ($response->getStatusCode() == 200) {
-            DB::table('requests')->insert([
-                'user_id' => Auth::id(),
-                'key_used' => $decodedResponse['key'],
-                'type' => 'auth',
-                'created_at' => Carbon::now('Europe/Istanbul'),
-                'updated_at' => Carbon::now('Europe/Istanbul')
-            ]);
-
+            $this->saveRequestTime($decodedResponse['key'], 'auth');
             $this->apiKey = $decodedResponse['key'];
         }
     }
@@ -123,15 +117,15 @@ class Request extends Model
      * @param $to
      * @param bool $withItems
      */
-    public function getSales($to, $withItems = false)
+    public function getSales($withItems = true)
     {        
         $client = new Client([
             'base_uri' => $this->baseUrl,
             'timeout' => $this->timeout
         ]);
 
-        $from = $this->getLatestRequestTime('report');
-        $to = $this->getNowTime();
+        $from = Util::getLatestRequestTime('report');
+        $to = Util::getNowTime();
 
         $withItems ? $withItems = 'true' : $withItems = 'false';
 
@@ -143,13 +137,7 @@ class Request extends Model
            ]
         ]);
 
-        DB::table('requests')->insert([
-            'user_id' => Auth::id(),
-            'key_used' => $this->apiKey,
-            'type' => 'report',
-            'created_at' => Carbon::now('Europe/Istanbul'),
-            'updated_at' => Carbon::now('Europe/Istanbul')
-        ]);
+        $this->saveRequestTime($this->apiKey, 'report');
 
         Sales::saveNewSales($response->getBody());
         Item::saveItems($response->getBody());
@@ -158,11 +146,11 @@ class Request extends Model
     /**
      * Gets the latest bookings.
      */
-    public function getBookings($from)
+    public function getBookings()
     {
-        
-        $toTime = Carbon::now('Europe/Istanbul');
-        $to = $this->convertTime($toTime);
+
+        $from = Util::getLatestRequestTime('booking');
+        $to = Util::getNowTime();
 
         $client = new Client([
             'base_uri' => $this->baseUrl,
@@ -177,13 +165,7 @@ class Request extends Model
             ]
         ]);
 
-        DB::table('requests')->insert([
-            'user_id' => Auth::id(),
-            'key_used' => $this->apiKey,
-            'type' => 'booking',
-            'created_at' => Carbon::now('Europe/Istanbul'),
-            'updated_at' => Carbon::now('Europe/Istanbul')
-        ]);
+        $this->saveRequestTime($this->apiKey, 'booking');
  
         Booking::saveNewBookings($response->getBody());
         BookingItem::saveItems($response->getBody());
@@ -195,8 +177,11 @@ class Request extends Model
      * @param  string $to
      * @param  string $rows
      */
-    public function getCustomers($from, $to, $rows = '3000')
+    public function getCustomers($rows = '3000')
     {
+
+        $from = Util::getLatestRequestTime('customers');
+        $to = Util::getNowTime();
 
         $client = new Client([
             'base_uri' => $this->baseUrl,
@@ -211,13 +196,7 @@ class Request extends Model
             ]
         ]);
 
-        DB::table('requests')->insert([
-            'user_id' => Auth::id(),
-            'key_used' => $this->apiKey,
-            'type' => 'customers',
-            'created_at' => Carbon::now('Europe/Istanbul'),
-            'updated_at' => Carbon::now('Europe/Istanbul')
-        ]);
+        $this->saveRequestTime($this->apiKey, 'customers');
 
         Customer::saveCustomers($response->getBody());
     }
@@ -243,61 +222,6 @@ class Request extends Model
         ]);
 
         Customer::saveCustomers($response->getBody());
-    }
-
-    /**
-     * Returns the latest request time from database.
-     * 
-     * @return string 
-     */
-    protected function getLatestRequestTime($type)
-    {
-        $latest = DB::table('requests')->orderBy('created_at', 'desc')->where('type', '=', $type)->first();
-
-        if ($latest) {
-            $latestRequest = $this->convertTime($latest->created_at);
-        } else {
-            $latestRequest = '2016-12-07T00:00';
-        }
-
-        return $latestRequest;
-    }
-
-    /**
-     * Converts the Carbon time into Koobin Style
-     * 
-     * @param  $time
-     * @return string
-     */
-    protected function convertTime($time)
-    {
-        $newTime = str_replace(' ', 'T', $time);
-
-        $realTime = substr($newTime, 0, -3);
-
-        return $realTime;
-    }
-
-    /**
-     * Returns the latest 'Booking' request time
-     * 
-     * @return string
-     */
-    public function checkLatestBookingRequestTime()
-    {
-        $now = Carbon::now('Europe/Istanbul');
-
-        $latestRequest = Request::where('type', '=', 'booking')->orderBy('created_at', 'desc')->first();
-
-        $from = $this->convertTime($now);
-        $to = $this->convertTime($latestRequest);
-
-        $requestValues = [
-            'from' => $from,
-            'to' => $to
-        ];
-
-        return $requestValues;
     }
 
     protected function saveRequestTime($apiKey, $type)
