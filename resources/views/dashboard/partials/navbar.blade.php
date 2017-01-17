@@ -23,9 +23,8 @@
                     <li>
                         <a href="{{ action('CompanyController@index') }}">Companies</a>
                     </li>
-                    <a href="{{ action('RequestController@getCustomer') }}" type="button" class="btn btn-warning btn-sm navbar-btn">Get Customers</a>
                 @endif
-                @if(Auth::check())
+                @if(Auth::check() && App\User::checkPermission('invoice'))
                     <li class="dropdown">
                         <a href="{{ action('ProformaController@index') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             Bookings <span class="caret"></span>
@@ -43,6 +42,7 @@
                             </li>
                         </ul>   
                     </li>
+                    <a href="{{ action('RequestController@getCustomer') }}" type="button" class="btn btn-warning btn-sm navbar-btn">Get Customers</a>
                 @endif
             </ul>
 

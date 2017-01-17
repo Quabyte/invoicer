@@ -12,7 +12,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					LATEST BOOKINGS
-					@if (Auth::check() && App\User::checkPermission('all'))
+					@if (Auth::check() && App\User::checkPermission('invoice'))
 						<a href="{{ action('RequestController@getBookings', ['baseUrl' => 'https://euroleague.acikgise.com']) }}" class="btn btn-success btn-xs pull-right">Refresh</a>
 					@endif
 				</div>
