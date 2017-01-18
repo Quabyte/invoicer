@@ -4,6 +4,7 @@ namespace App;
 
 use App\Customer;
 use Carbon\Carbon;
+use App\Utilities\Util;
 use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model
@@ -52,7 +53,7 @@ class Customer extends Model
      */
     public static function saveCustomers($jsonObject)
     {
-    	$json = json_decode($jsonObject, true);
+        $json = Util::decodeJson($jsonObject);
 
     	for ($i=0; $i <= sizeof($json['customers']) - 1; $i++) { 
     		$customer = new Customer;

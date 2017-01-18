@@ -5,6 +5,7 @@ namespace App;
 use App\Request;
 use Carbon\Carbon;
 use App\BookingItem;
+use App\Utilities\Util;
 use Illuminate\Database\Eloquent\Model;
 
 class Booking extends Model
@@ -35,7 +36,8 @@ class Booking extends Model
      */
     public static function saveNewBookings($jsonObject)
     {
-    	$json = json_decode($jsonObject, true);
+        
+        $json = Util::decodeJson($jsonObject);
 
     	for ($i=0; $i <= sizeof($json['bookings']) - 1 ; $i++) { 
     		$booking = new Booking;
