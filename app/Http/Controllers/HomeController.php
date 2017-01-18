@@ -28,7 +28,6 @@ class HomeController extends Controller
     public function index()
     {
         $sales = Sales::all();
-        Bugsnag::notifyError('ErrorType', 'Test Error');
         return view('home', compact('sales'));
     }
 }
