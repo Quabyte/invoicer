@@ -13,7 +13,7 @@
 </head>
 <body>
 	<div class="wrapper">
-		<p style="margin-top: 10px; margin-left: 50px;">Proforma-{{ $proforma->generate_count }}</p>
+		<p style="margin-top: 10px; margin-left: 50px;">Proforma-{{ $proforma->id }}</p>
 		<div class="date">
 			<p>{{ $proforma->created_at }}</p>
 		</div>
@@ -42,12 +42,12 @@
 		<div class="center">
 			<table class="pure-table pure-table-bordered">
 				<tbody>
-					<tr style="max-height: 70px;">
+					<tr style="max-height: 50px;">
 						<td width="40%">
 							<b>TO</b>
 						</td>
-						<td width="30%">{{ $customer->first_name }}</td>
-						<td width="30%">{{ $customer->address . ' ' . $customer->city . ' ' . $customer->province . ' ' . $customer->zip_code . ' ' . $customer->country}}</td>
+						<td width="30%"><p class="fs-14">{{ $customer->first_name }}</p></td>
+						<td width="30%"><p class="fs-14">{{ $customer->address . ' ' . $customer->city . ' ' . $customer->province . ' ' . $customer->zip_code . ' ' . $customer->country}}</p></td>
 					</tr>
 					<tr>
 						<td width="40%">
@@ -62,13 +62,13 @@
 					</tr>
 					<tr>
 						<td width="40%">
-							<p>2017 Turkish Airlines EuroLeague Final Four Istanbul</p>
+							<p class="fs-14">2017 Turkish Airlines EuroLeague Final Four Istanbul</p>
 						</td>
 						<td width="30%">
-							<p>{{ $proforma->ticket_counts }} x {{ $proforma->category_names }} Tickets</p>
+							<p class="fs-14">{{ $proforma->ticket_counts }} x {{ $proforma->category_names }} Tickets</p>
 						</td>
 						<td width="30%">
-							<p>{{ $proforma->total }} EUR</p>
+							<p class="fs-14">{{ $proforma->total }} EUR</p>
 						</td>
 					</tr>
 					<tr>
@@ -94,13 +94,13 @@
 		</div>
 
 		<div class="left">
-			<p><b>Bank Name:</b> GARANTI BANK</p>
-			<p><b>Bank Branch Name:</b> RUMELI CADDESI BRANCH</p>
-			<p><b>Branch Number:</b> 406</p>
-			<p><b>Account Number:</b> 908 34 33</p>
-			<p><b>SWIFT Code:</b> TGBATRISXXX</p>
-			<p><b>IBAN:</b> TR37 0006 2000 4060 0009 0834 33</p>
-			<p><b>Branch Address:</b> Rumeli Cad. No:48 Nisantasi-Sisli-Istanbul/TURKEY</p>
+			<p class="fs-14"><b>Bank Name:</b> GARANTI BANK</p>
+			<p class="fs-14"><b>Bank Branch Name:</b> RUMELI CADDESI BRANCH</p>
+			<p class="fs-14"><b>Branch Number:</b> 406</p>
+			<p class="fs-14"><b>Account Number:</b> 908 34 33</p>
+			<p class="fs-14"><b>SWIFT Code:</b> TGBATRISXXX</p>
+			<p class="fs-14"><b>IBAN:</b> TR37 0006 2000 4060 0009 0834 33</p>
+			<p class="fs-14"><b>Branch Address:</b> Rumeli Cad. No:48 Nisantasi-Sisli-Istanbul/TURKEY</p>
 			<p style="margin-top: 20px; color: red">Please note all bank transfer expenses will be covered by you.</p>
 			<p style="color: red;">PAYMENT MUST BE DONE IN EUROS</p>
 		</div>
