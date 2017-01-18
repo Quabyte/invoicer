@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Utilities\Util;
 use Illuminate\Database\Eloquent\Model;
 
 class BookingItem extends Model
@@ -34,7 +35,7 @@ class BookingItem extends Model
      */
     public static function saveItems($jsonObject)
     {
-    	$json = json_decode($jsonObject, true);
+        $json = Util::decodeJson($jsonObject);
 
     	for ($i=0; $i <= sizeof($json['bookings']) - 1; $i++) { 
     		for ($j=0; $j <= sizeof($json['bookings'][$i]['items']) - 1 ; $j++) { 

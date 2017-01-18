@@ -103,7 +103,7 @@ class Request extends Model
            ]
         ]);
 
-        $decodedResponse = \GuzzleHttp\json_decode($response->getBody(), true);
+        $decodedResponse = Util::decodeJson($response->getBody());
 
         if ($response->getStatusCode() == 200) {
             $this->saveRequestTime($decodedResponse['key'], 'auth');

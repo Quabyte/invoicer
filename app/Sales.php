@@ -4,6 +4,7 @@ namespace App;
 
 use App\Item;
 use Carbon\Carbon;
+use App\Utilities\Util;
 use Illuminate\Database\Eloquent\Model;
 
 class Sales extends Model
@@ -66,7 +67,7 @@ class Sales extends Model
      */
     public static function saveNewSales($jsonObject)
     {
-    	$json = json_decode($jsonObject, true);
+        $json = Util::decodeJson($json);
 
         for ($i = 0; $i <= sizeof($json['sales']) - 1; $i++) {
             $sale = new Sales;
