@@ -42,7 +42,11 @@
                             </li>
                         </ul>   
                     </li>
-                    <a href="{{ action('RequestController@getCustomer') }}" type="button" class="btn btn-warning btn-sm navbar-btn">Get Customers</a>
+                    <li>
+                        <a href="{{ action('RequestController@getCustomer') }}">
+                            <i class="glyphicon glyphicon-user"></i> Get Customers
+                        </a>
+                    </li>
                 @endif
             </ul>
 
