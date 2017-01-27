@@ -100,7 +100,6 @@ class Customer extends Model
 
         for ($i=0; $i <= sizeof($json['customers']) - 1; $i++) {
             $customer = Customer::where('id', '=', $customerID)->first();
-            $customer->id = $json['customers'][$i]['id'];
             $customer->first_name = $json['customers'][$i]['first_name'];
             $customer->second_name = $json['customers'][$i]['surname_1st'] . ' ' . $json['customers'][$i]['surname_2nd'];
             $customer->birth_date = $json['customers'][$i]['birth_date'];
