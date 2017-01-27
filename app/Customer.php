@@ -93,4 +93,26 @@ class Customer extends Model
 
         return $customer->address;
     }
+
+    public static function updateCustomer($jsonObject, $customerID)
+    {
+        $json = Util::decodeJson($jsonObject);
+
+        for ($i=0; $i <= sizeof($json['customers']) - 1; $i++) {
+            $customer = Customer::where('id', '=', $customerID)->first();
+            $customer->id = $json['customers'][$i]['id'];
+            $customer->first_name = $json['customers'][$i]['first_name'];
+            $customer->second_name = $json['customers'][$i]['surname_1st'] . ' ' . $json['customers'][$i]['surname_2nd'];
+            $customer->birth_date = $json['customers'][$i]['birth_date'];
+            $customer->gender = $json['customers'][$i]['gender'];
+            $customer->address = $json['customers'][$i]['postal_address']['street'];
+            $customer->zip_code = $json['customers'][$i]['postal_address']['zip_code'];
+            $customer->city = $json['customers'][$i]['postal_address']['city'];
+            $customer->province = $json['customers'][$i]['postal_address']['province'];
+            $customer->country = $json['customers'][$i]['postal_address']['country'];
+            $customer->telephone = $json['customers'][$i]['mobile'];
+            $customer->email = $json['customers'][$i]['email'];
+            $customer->save();
+        }
+    }
 }

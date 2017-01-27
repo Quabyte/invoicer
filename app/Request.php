@@ -234,4 +234,22 @@ class Request extends Model
             'updated_at' => Carbon::now('Europe/Istanbul')
         ]);
     }
+
+    public function updateCustomer($customerID)
+    {
+        $client = new Client([
+            'base_uri' => $this->baseUrl,
+            'timeout' => $this->timeout
+        ]);
+
+        $url = $this->apiURL . 'customer/' . $customerID;
+
+        $response = $client->request('GET', $url, [
+           'headers' => [
+               'Authorization' => $this->apiKey
+           ]
+        ]);
+
+        Customer::updateCustomer($response->getBody(), $customerID);
+    }
 }

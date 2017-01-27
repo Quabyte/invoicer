@@ -36,4 +36,12 @@ class RequestController extends Controller
 
         return redirect()->back();
     }
+
+    public function singleCustomer($customerID)
+    {
+        $request = new KoobinRequest('https://euroleague.acikgise.com', 600);
+        $request->updateCustomer($customerID);
+
+        return redirect()->back();
+    }
 }

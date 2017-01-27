@@ -86,7 +86,10 @@
 						</div>
 
 						<div class="row">
-							<div class="col-md-12">
+                            <div class="col-md-6">
+                                <a href="{{ action('RequestController@singleCustomer', ['id' => $customer->id]) }}" class="btn btn-primary">Update Customer</a>
+                            </div>
+							<div class="col-md-6">
 								<div class="pull-right">
 									<input type="submit" value="Update" class="btn btn-success">
 									<a href="{{ action('ProformaController@generatedList') }}"> Cancel</a>
