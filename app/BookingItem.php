@@ -60,6 +60,7 @@ class BookingItem extends Model
             for ($j=0; $j <= sizeof($json['bookings'][$i]['items']) - 1 ; $j++) {
                 $item = new BookingItem;
                 $item->booking_id = $bookingRef;
+                dd($json['bookings'][$i]['items'][$j]['area']);
                 $item->area = $json['bookings'][$i]['items'][$j]['area'];
                 $item->zone = $json['bookings'][$i]['items'][$j]['zone'];
                 $item->seat = $json['bookings'][$i]['items'][$j]['seat'];
