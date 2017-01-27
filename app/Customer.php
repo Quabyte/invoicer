@@ -40,29 +40,34 @@ class Customer extends Model
     }
 
     /**
-     * Saves the customers into database
-     * 
-     * @param  $jsonObject Returned JSON object from the server
+     * Saves the new customers
+     *
+     * @param $jsonObject
+     * @return bool
      */
     public static function saveCustomers($jsonObject)
     {
         $json = Util::decodeJson($jsonObject);
 
-    	for ($i=0; $i <= sizeof($json['customers']) - 1; $i++) { 
-    		$customer = new Customer;
-    		$customer->id = $json['customers'][$i]['id'];
-    		$customer->first_name = $json['customers'][$i]['first_name'];
-    		$customer->second_name = $json['customers'][$i]['surname_1st'] . ' ' . $json['customers'][$i]['surname_2nd'];
-    		$customer->birth_date = $json['customers'][$i]['birth_date'];
-    		$customer->gender = $json['customers'][$i]['gender'];
-    		$customer->address = $json['customers'][$i]['postal_address']['street'];
-    		$customer->zip_code = $json['customers'][$i]['postal_address']['zip_code'];
-    		$customer->city = $json['customers'][$i]['postal_address']['city'];
-    		$customer->province = $json['customers'][$i]['postal_address']['province'];
-    		$customer->country = $json['customers'][$i]['postal_address']['country'];
-    		$customer->telephone = $json['customers'][$i]['mobile'];
-    		$customer->email = $json['customers'][$i]['email'];
-    		$customer->save();
+    	for ($i=0; $i <= sizeof($json['customers']) - 1; $i++) {
+            if (Customer::where('id', '=', $json['customers'][$i]['id'])->count() > 0) {
+                return true;
+            } else {
+                $customer = new Customer;
+                $customer->id = $json['customers'][$i]['id'];
+                $customer->first_name = $json['customers'][$i]['first_name'];
+                $customer->second_name = $json['customers'][$i]['surname_1st'] . ' ' . $json['customers'][$i]['surname_2nd'];
+                $customer->birth_date = $json['customers'][$i]['birth_date'];
+                $customer->gender = $json['customers'][$i]['gender'];
+                $customer->address = $json['customers'][$i]['postal_address']['street'];
+                $customer->zip_code = $json['customers'][$i]['postal_address']['zip_code'];
+                $customer->city = $json['customers'][$i]['postal_address']['city'];
+                $customer->province = $json['customers'][$i]['postal_address']['province'];
+                $customer->country = $json['customers'][$i]['postal_address']['country'];
+                $customer->telephone = $json['customers'][$i]['mobile'];
+                $customer->email = $json['customers'][$i]['email'];
+                $customer->save();
+            }
     	}
     }
 
