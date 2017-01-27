@@ -269,6 +269,6 @@ class Request extends Model
         ]);
 
         Booking::updateBooking($response->getBody(), $bookingRef);
-        BookingItem::saveItems($response->getBody());
+        BookingItem::saveItemsForOneBooking($response->getBody(), $bookingRef);
     }
 }
