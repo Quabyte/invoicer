@@ -74,9 +74,9 @@ class BookingItem extends Model
         $areas = BookingItem::where('booking_id', '=', $bookingRef)->get(['area']);
         $list = [];
         $count = [
-            "Courtside Row-1" => 0,
-            "Courtside Row-2" => 0,
-            "Courtside Row-3" => 0,
+            "CSS Row 1" => 0,
+            "CSS Row 2" => 0,
+            "CSS Row 3" => 0,
             "Gold Suites" => 0,
             "Silver Suites" => 0,
             "Bronze Suites" => 0,
@@ -97,14 +97,14 @@ class BookingItem extends Model
 
         foreach ($areas as $area) {
             switch ($area->area) {
-                case 'Courtside Row-1':
-                    $count['Courtside Row-1'] = $count['Courtside Row-1'] + 1;
+                case 'CSS Row 1':
+                    $count['CSS Row 1'] = $count['CSS Row 1'] + 1;
                     break;
-                case 'Courtside Row-2':
-                    $count['Courtside Row-2'] = $count['Courtside Row-2'] + 1;
+                case 'CSS Row 2':
+                    $count['CSS Row 2'] = $count['CSS Row 2'] + 1;
                     break;
-                case 'Courtside Row-3':
-                    $count['Courtside Row-3'] = $count['Courtside Row-3'] + 1;
+                case 'CSS Row 3':
+                    $count['CSS Row 3'] = $count['CSS Row 3'] + 1;
                     break;
                 case 'Gold Suites':
                     $count['Gold Suites'] = $count['Gold Suites'] + 1;
