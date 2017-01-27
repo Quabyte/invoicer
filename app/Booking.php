@@ -63,9 +63,11 @@ class Booking extends Model
     {
         $json = Util::decodeJson($jsonObject);
 
-        $booking = Booking::where('booking_id', '=', $bookingRef)->first();
-        $booking->time = Carbon::parse($json['bookings'][$i]['datetime']);
-        $booking->save();
+        for ($i=0; $i <= sizeof($json['bookings']) - 1 ; $i++) {
+            $booking = Booking::where('booking_id', '=', $bookingRef)->first();
+            $booking->time = Carbon::parse($json['bookings'][$i]['datetime']);
+            $booking->save();
+        }
     }
 
     /**
