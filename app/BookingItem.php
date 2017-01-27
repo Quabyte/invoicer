@@ -44,7 +44,8 @@ class BookingItem extends Model
     			$item->area = $json['bookings'][$i]['items'][$j]['area'];
     			$item->zone = $json['bookings'][$i]['items'][$j]['zone'];
     			$item->seat = $json['bookings'][$i]['items'][$j]['seat'];
-    			$item->total = $json['bookings'][$i]['items'][$j]['amount']['total'];
+                $total = str_replace(',', '', $json['bookings'][$i]['items'][$j]['amount']['total']);
+    			$item->total = $total;
                 $item->status = $json['bookings'][$i]['items'][$j]['transaction_type'];
     			$item->save();
     		}
