@@ -30,13 +30,6 @@ class Customer extends Model
     ];
 
     /**
-     * Overwrite the default primary key
-     * 
-     * @var string
-     */
-    protected $primaryKey = 'customer_id';
-
-    /**
      * Returns the related sales
      * 
      * @return collection
