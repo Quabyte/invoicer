@@ -252,4 +252,23 @@ class Request extends Model
 
         Customer::updateCustomer($response->getBody(), $customerID);
     }
+
+    public function updateBooking($bookingRef)
+    {
+        $client = new Client([
+            'base_uri' => $this->baseUrl,
+            'timeout' => $this->timeout
+        ]);
+
+        $url = $this->apiURL . 'booking/' . $bookingRef;
+
+        $response = $client->request('GET', $url, [
+           'headers' => [
+               'Authorization' => $this->apiKey
+           ]
+        ]);
+
+        Booking::updateBooking($response->getBody(), $bookingRef);
+        BookingItem::saveItems($response->getBody());
+    }
 }

@@ -59,6 +59,15 @@ class Booking extends Model
     	}
     }
 
+    public static function updateBooking($jsonObject, $bookingRef)
+    {
+        $json = Util::decodeJson($jsonObject);
+
+        $booking = Booking::where('bookin_id', '=', $bookingRef)->first();
+        $booking->time = Carbon::parse($json['bookings'][$i]['datetime']);
+        $booking->save();
+    }
+
     /**
      * Returns the booking item names
      * 

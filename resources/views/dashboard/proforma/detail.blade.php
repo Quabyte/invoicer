@@ -11,7 +11,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					BOOKING REF: {{ $booking->booking_id }}
-					
+					<a href="{{ action('RequestController@singleBooking', ['bookingRef' => $booking->booking_id]) }}" class="btn btn-primary btn-xs">Update Booking</a>
 					@if (App\Proforma::checkIfGenerated($booking->booking_id))
 						<button data-toggle="modal" data-target="#proformaModal" class="btn btn-success btn-xs pull-right">
 							<i class="glyphicon glyphicon-check"></i> Generate Proforma
