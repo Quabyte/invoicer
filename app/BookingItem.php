@@ -59,19 +59,35 @@ class BookingItem extends Model
         for ($i=0; $i <= sizeof($json['bookings']) - 1; $i++) {
             if (sizeof($json['bookings'][$i]['items']) > 0) {
                 for ($j=0; $j <= sizeof($json['bookings'][$i]['items']) - 1 ; $j++) {
-                    $item = new BookingItem;
-                    $item->booking_id = $bookingRef;
-                    $item->area = $json['bookings'][$i]['items'][$j]['area'];
-                    $item->zone = $json['bookings'][$i]['items'][$j]['zone'];
-                    $item->seat = $json['bookings'][$i]['items'][$j]['seat'];
-                    $total = str_replace(',', '', $json['bookings'][$i]['items'][$j]['amount']['total']);
-                    $item->total = $total;
-                    $item->status = $json['bookings'][$i]['items'][$j]['transaction_type'];
-                    $item->save();
+                    if (static::checkSeatExists($json['bookings'][$i]['items']['seat'])) {
+                        $item = new BookingItem;
+                        $item->booking_id = $bookingRef;
+                        $item->area = $json['bookings'][$i]['items'][$j]['area'];
+                        $item->zone = $json['bookings'][$i]['items'][$j]['zone'];
+                        $item->seat = $json['bookings'][$i]['items'][$j]['seat'];
+                        $total = str_replace(',', '', $json['bookings'][$i]['items'][$j]['amount']['total']);
+                        $item->total = $total;
+                        $item->status = $json['bookings'][$i]['items'][$j]['transaction_type'];
+                        $item->save();
+                    } else {
+                        return true;
+                    }
                 }
             } else {
                 return true;
             }
+        }
+    }
+
+    protected static function checkSeatExists($seat)
+    {
+        $bookingItems = BookingItem::where('seat', '=', $seat)->get();
+
+        if ($bookingItems->count() > 0)
+        {
+            return false;
+        } else {
+            return true;
         }
     }
 
