@@ -59,7 +59,7 @@ class BookingItem extends Model
         for ($i=0; $i <= sizeof($json['bookings']) - 1; $i++) {
             if (sizeof($json['bookings'][$i]['items']) > 0) {
                 for ($j=0; $j <= sizeof($json['bookings'][$i]['items']) - 1 ; $j++) {
-                    if (static::checkSeatExists($json['bookings'][$i]['items']['seat'])) {
+                    if (static::checkSeatExists($json['bookings'][$i]['items'][$j]['seat'])) {
                         $item = new BookingItem;
                         $item->booking_id = $bookingRef;
                         $item->area = $json['bookings'][$i]['items'][$j]['area'];
