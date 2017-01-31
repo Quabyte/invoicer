@@ -57,7 +57,7 @@ class BookingItem extends Model
         $json = Util::decodeJson($jsonObject);
 
         for ($i=0; $i <= sizeof($json['bookings']) - 1; $i++) {
-            if (sizeof($json['bookings'][$i]['items']) > 0) {
+            if (is_array($json['bookings'][$i]['items'])) {
                 for ($j=0; $j <= sizeof($json['bookings'][$i]['items']) - 1 ; $j++) {
                     if (static::checkSeatExists($json['bookings'][$i]['items'][$j]['seat'])) {
                         $item = new BookingItem;
