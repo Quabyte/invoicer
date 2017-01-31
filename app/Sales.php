@@ -67,7 +67,7 @@ class Sales extends Model
      */
     public static function saveNewSales($jsonObject)
     {
-        $json = Util::decodeJson($json);
+        $json = Util::decodeJson($jsonObject);
 
         for ($i = 0; $i <= sizeof($json['sales']) - 1; $i++) {
             $sale = new Sales;
