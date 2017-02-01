@@ -150,7 +150,7 @@ class Request extends Model
             'timeout' => $this->timeout
         ]);
 
-        $from = Util::getLatestRequestTime('desk');
+        $from = '2016-12-16T15:00';
         $to = Util::getNowTime();
 
         $url = $this->apiURL . 'sales?from=' . $from . '&to=' . $to . '&channel=DESK&with_items=true';
