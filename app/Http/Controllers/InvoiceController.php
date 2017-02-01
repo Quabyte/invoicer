@@ -64,6 +64,7 @@ class InvoiceController extends Controller
         $invoice->generated = $request->invoiceDate;
         $invoice->invoice_number = $request->invoiceNumber;
         $invoice->currency_rate = $request->currencyRate;
+        $invoice->tc_kimlik = $request->tcKimlik;
         $invoice->canceled = false;
         $invoice->save();
 

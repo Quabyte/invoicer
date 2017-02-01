@@ -66,9 +66,29 @@ class Customer extends Model
                 $customer->country = $json['customers'][$i]['postal_address']['country'];
                 $customer->telephone = $json['customers'][$i]['mobile'];
                 $customer->email = $json['customers'][$i]['email'];
+
+                if (is_array($json['customers'][$i]['custom_fields'])) {
+                    $customer->tc_kimlik = $json['customers'][$i]['custom_fields']['value'];
+                }
+
                 $customer->save();
             }
     	}
+    }
+
+    public static function getTCKimlik($jsonObject, $customerID)
+    {
+        $json = Util::decodeJson($jsonObject);
+
+        $customer = Customer::where('id', '=', $customerID)->first();
+
+        if (isset($json['customers'][0]['custom_fields']['value'])) {
+            $customer->tc_kimlik = $json['customers'][0]['custom_fields']['value'];
+            $customer->save();
+        } else {
+            $customer->tc_kimlik = 'Not Set';
+            $customer->save();
+        }
     }
 
     public static function getCustomer($customerID)

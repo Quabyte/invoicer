@@ -26,6 +26,13 @@
 						</div>
 					</div>
 
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="tcKimlik">TC Kimlik</label>
+                            <input type="text" name="tcKimlik" class="form-control">
+                        </div>
+                    </div>
+
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">

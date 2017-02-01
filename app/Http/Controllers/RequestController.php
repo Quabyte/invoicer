@@ -57,5 +57,15 @@ class RequestController extends Controller
     {
         $request = new KoobinRequest('https://euroleague.acikgise.com', 600);
         $request->getDeskSales();
+
+        return redirect()->back();
+    }
+
+    public function getTcKimlik($customerID)
+    {
+        $request = new KoobinRequest('https://euroleague.acikgise.com', 600);
+        $request->getTCKimlik($customerID);
+
+        return redirect()->back();
     }
 }

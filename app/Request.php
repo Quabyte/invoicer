@@ -225,6 +225,24 @@ class Request extends Model
         Customer::saveCustomers($response->getBody());
     }
 
+    public function getTCKimlik($customerID)
+    {
+        $client = new Client([
+            'base_uri' => $this->baseUrl,
+            'timeout' => $this->timeout
+        ]);
+
+        $url = $this->apiURL . 'customer/' . $customerID;
+
+        $response = $client->request('GET', $url, [
+            'headers' => [
+                'Authorization' => $this->apiKey
+            ]
+        ]);
+
+        Customer::getTCKimlik($response->getBody(), $customerID);
+    }
+
     public function getSingleCustomer($customerID)
     {
         
