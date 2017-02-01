@@ -60,11 +60,11 @@ class InvoiceController extends Controller
         $invoice->category_names = implode('.', array_keys($tickets));
         $invoice->ticket_counts = implode('.', array_values($tickets));
 
-        $invoice->price_text = $request->priceText;
+        $invoice->price_text = trim($request->priceText);
         $invoice->generated = $request->invoiceDate;
-        $invoice->invoice_number = $request->invoiceNumber;
-        $invoice->currency_rate = $request->currencyRate;
-        $invoice->tc_kimlik = $request->tcKimlik;
+        $invoice->invoice_number = trim($request->invoiceNumber);
+        $invoice->currency_rate = trim($request->currencyRate);
+        $invoice->tc_kimlik = trim($request->tcKimlik);
         $invoice->canceled = false;
         $invoice->save();
 
