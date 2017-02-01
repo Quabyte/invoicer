@@ -19,6 +19,7 @@
 				<p>{{ $invoice->address }}</p>
 				<p>{{ $invoice->zip_code }}</p>
 				<p>{{ $invoice->province }} / {{ $invoice->country }}</p>
+                <p>TC: {{ $invoice->tc_kimlik }}</p>
 			</div>
 			<div class="invoiceDate">
 				<p>{{ $invoice->generated }}</p>
