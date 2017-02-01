@@ -27,7 +27,7 @@ class Invoice extends Model
 
     public static function convertToTL($amount, $rate = 3.6841)
     {
-        return round($amount * $rate, 2);
+        return round($amount * $rate, 3);
     }
 
     public static function checkGenerated($transactionID)
