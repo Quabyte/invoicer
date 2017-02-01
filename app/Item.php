@@ -97,8 +97,8 @@ class Item extends Model
 
     public static function calculateTax($total)
     {
-        $taxFree = $total / 1.18;
-        $tax = $total - $taxFree;
+        $taxFree = round($total / 1.18, 2);
+        $tax = round($total - $taxFree);
 
         return $tax;
     }
