@@ -143,6 +143,30 @@ class Request extends Model
         Item::saveItems($response->getBody());
     }
 
+    public function getDeskSales()
+    {
+        $client = new Client([
+            'base_uri' => $this->baseUrl,
+            'timeout' => $this->timeout
+        ]);
+
+        $from = Util::getLatestRequestTime('desk');
+        $to = Util::getNowTime();
+
+        $url = $this->apiURL . 'sales?from=' . $from . '&to=' . $to . '&channel=DESK&with_items=true';
+
+        $response = $client->request('GET', $url, [
+           'headers' => [
+               'Authorization' => $this->apiKey
+           ]
+        ]);
+
+        $this->saveRequestTime($this->apiKey, 'desk');
+
+        Sales::saveNewSales($response->getBody());
+        Item::saveItems($response->getBody());
+    }
+
     /**
      * Gets the latest bookings.
      */

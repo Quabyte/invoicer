@@ -52,4 +52,10 @@ class RequestController extends Controller
 
         return redirect()->back();
     }
+
+    public function getDeskSales()
+    {
+        $request = new KoobinRequest('https://euroleague.acikgise.com', 600);
+        $request->getDeskSales();
+    }
 }

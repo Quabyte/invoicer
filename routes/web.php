@@ -5,6 +5,7 @@ Route::get('/', 'HomeController@index');
 Route::get('/request', 'RequestController@makeRequest');
 Route::get('/getBookings', 'RequestController@getBookings');
 Route::get('/getCustomer', 'RequestController@getCustomer');
+Route::get('/getDeskSales', 'RequestController@getDeskSales');
 Route::get('/updateCustomer/{id}', 'RequestController@singleCustomer');
 Route::get('/updateBooking/{id}', 'RequestController@singleBooking');
 

@@ -33,6 +33,7 @@
                 LATEST TRANSACTIONS
                 @if (App\User::checkPermission('all'))
                     <a href="{{ action('RequestController@makeRequest', ['baseUrl' => 'https://euroleague.acikgise.com']) }}" class="btn btn-success btn-xs pull-right">Refresh</a>
+                    <a href="{{ action('RequestController@getDeskSales', ['baseUrl' => 'https://euroleague.acikgise.com']) }}" class="btn btn-warning btn-xs">Desk Sales</a>
                 @endif
             </div>
             <div class="panel-body">
