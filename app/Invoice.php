@@ -25,7 +25,7 @@ class Invoice extends Model
 
     protected $table = 'invoices';
 
-    public static function convertToTL($amount, $rate = 3.6841)
+    public static function convertToTL($amount, $rate)
     {
         return round($amount * $rate, 2);
     }
