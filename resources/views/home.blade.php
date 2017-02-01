@@ -59,11 +59,9 @@
                                 <td>{{ $sale->time }}</td>
                                 <td>{{ $sale->transaction_type }}</td>
                                 <td>
-                                    @if (App\User::checkPermission('invoice'))
-                                        <a href="{{ action('SalesController@edit', ['id' => $sale->id]) }}" class="btn btn-xs btn-default">
-                                            <i class="glyphicon glyphicon-pencil"></i>
-                                        </a>
-                                    @endif
+                                    <a href="{{ action('SalesController@edit', ['id' => $sale->id]) }}" class="btn btn-xs btn-default">
+                                        <i class="glyphicon glyphicon-pencil"></i>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach
