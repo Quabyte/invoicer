@@ -34,9 +34,9 @@
 					<div class="row">
 						<div class="col-md-12">
 							<p>Açıklama: {{ $invoice->package }}</p>
-							<p>KDV'li Matrah: {{ App\Invoice::convertToTL($invoice->total - $invoice->tax) }} TL</p>
-							<p>KDV % 18: {{ App\Invoice::convertToTL($invoice->tax) }} TL</p>
-							<p>GENEL TOPLAM: {{ App\Invoice::convertToTL($invoice->total) }} TL</p>
+							<p>KDV'li Matrah: {{ App\Invoice::convertToTL($invoice->total - $invoice->tax, $invoice->currency_rate) }} TL</p>
+							<p>KDV % 18: {{ App\Invoice::convertToTL($invoice->tax, $invoice->currency_rate) }} TL</p>
+							<p>GENEL TOPLAM: {{ App\Invoice::convertToTL($invoice->total, $invoice->currency_rate) }} TL</p>
 							<p>TOTAL AMOUNT: {{ $invoice->total }}€</p>
 						</div>
 					</div>

@@ -63,6 +63,7 @@ class InvoiceController extends Controller
         $invoice->price_text = $request->priceText;
         $invoice->generated = $request->invoiceDate;
         $invoice->invoice_number = $request->invoiceNumber;
+        $invoice->currency_rate = $request->currencyRate;
         $invoice->canceled = false;
         $invoice->save();
 

@@ -78,12 +78,18 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-12">
+						<div class="col-md-6">
 							<div class="form-group">
 								<label for="invoiceNumber">Invoice Number</label>
 								<input type="text" class="form-control" name="invoiceNumber">
 							</div>
 						</div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="currencyRate">Currency Rate</label>
+                                <input type="text" class="form-control" name="currencyRate" value="3.70">
+                            </div>
+                        </div>
 					</div>
 					<input type="hidden" name="transaction_id" value="{{ $transaction->transaction_id }}">
 					<input type="submit" class="btn btn-success" value="Generate"></input>
