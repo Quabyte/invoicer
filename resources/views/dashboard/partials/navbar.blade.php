@@ -19,12 +19,12 @@
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
-                @if (Auth::check() && App\User::checkPermission('all'))
+                @if (Auth::check() && App\User::checkRoot())
                     <li>
                         <a href="{{ action('CompanyController@index') }}">Companies</a>
                     </li>
                 @endif
-                @if(Auth::check() && App\User::checkPermission('invoice'))
+                @if(Auth::check() && App\User::checkEuroleague())
                     <li class="dropdown">
                         <a href="{{ action('ProformaController@index') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             Bookings <span class="caret"></span>
@@ -62,7 +62,7 @@
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
-                            @if (App\User::checkPermission('all'))
+                            @if (App\User::checkRoot())
                                 <li>
                                     <a href="{{ action('UsersController@index') }}">
                                         Users & Permissions

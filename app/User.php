@@ -39,15 +39,40 @@ class User extends Authenticatable
         return $this->belongsTo('App/Role');
     }
 
-    public static function checkPermission($permissionName)
+    public static function checkPermission()
     {
-        $permission = Permission::where('name', '=', $permissionName)->first();
         $user = Auth::user();
 
-        if ($user->role_id == 1 || $user->role_id == $permission->role_id) {
+        if ($user->role_id == 1) {
             return true;
+        } elseif ($user->role_id == 2) {
+            return true;
+        } else {
+            return false;
         }
+    }
 
-        return false;
+    public static function checkRoot()
+    {
+        $user = Auth::user();
+
+        if ($user->role_id == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static function checkEuroleague()
+    {
+        $user = Auth::user();
+
+        if ($user->role_id == 1) {
+            return true;
+        } elseif ($user->role_id == 3) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

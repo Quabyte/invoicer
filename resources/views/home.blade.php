@@ -26,12 +26,11 @@
             </div>
         @endif
     </div> --}}
-    
     <div class="row">
         <div class="panel panel-default">
             <div class="panel-heading">
                 LATEST TRANSACTIONS
-                @if (App\User::checkPermission('all'))
+                @if (App\User::checkRoot())
                     <a href="{{ action('RequestController@makeRequest', ['baseUrl' => 'https://euroleague.acikgise.com']) }}" class="btn btn-success btn-xs pull-right">Refresh</a>
                     <a href="{{ action('RequestController@getDeskSales', ['baseUrl' => 'https://euroleague.acikgise.com']) }}" class="btn btn-warning btn-xs">Desk Sales</a>
                 @endif
@@ -59,9 +58,11 @@
                                 <td>{{ $sale->time }}</td>
                                 <td>{{ $sale->transaction_type }}</td>
                                 <td>
+                                    @if(App\User::checkPermission())
                                     <a href="{{ action('SalesController@edit', ['id' => $sale->id]) }}" class="btn btn-xs btn-default">
                                         <i class="glyphicon glyphicon-pencil"></i>
                                     </a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
