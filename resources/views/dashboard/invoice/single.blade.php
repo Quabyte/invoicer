@@ -27,7 +27,7 @@
 
 						<div class="col-md-6">
 							<p>Tarih: {{ $invoice->generated }}</p>
-							<p>Fatura No: {{ $invoice->transaction_id }}</p>
+							<p>Fatura No: {{ $invoice->invoice_number }}</p>
 						</div>
 					</div>
 					<br>
