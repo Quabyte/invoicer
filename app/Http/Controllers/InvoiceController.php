@@ -55,6 +55,11 @@ class InvoiceController extends Controller
         $invoice->tax = Item::calculateTax($total);
         $invoice->fee = $fee;
         $invoice->total = $total;
+
+        $tickets = Item::getAreaCount($request->transaction_id);
+        $invoice->category_names = implode('.', array_keys($tickets));
+        $invoice->ticket_counts = implode('.', array_values($tickets));
+
         $invoice->price_text = $request->priceText;
         $invoice->generated = $request->invoiceDate;
         $invoice->canceled = false;
@@ -113,7 +118,7 @@ class InvoiceController extends Controller
     public function preview($id)
     {   
         $invoice = Invoice::findOrFail($id);
-        $items = Sales::getItemNames($invoice->transaction_id);
+        $items = Item::getAreaCount($invoice->transaction_id);
         $pdf = App::make('dompdf.wrapper');
         $pdf->loadView('dashboard.invoice.pdf', compact('invoice', 'items'));
         return $pdf->stream();

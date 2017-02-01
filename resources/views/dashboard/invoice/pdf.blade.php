@@ -10,6 +10,7 @@
 	<title>{{ $invoice->transaction_id }} | Print Invoice</title>
 </head>
 <body>
+	ID: {{ $invoice->transaction_id }}
 	<div class="invoicePage">
 		
 		<div class="upperArea">
@@ -29,9 +30,7 @@
 				<p style="margin-top: 10px;">{{ $invoice->package }}</p>
 
 				<div style="padding-left: 50px;">
-					@foreach ($items as $item)
-						<p>1 x {{ $item->area }} TICKET</p>
-					@endforeach
+					<p>{{ $invoice->ticket_counts }} X  {{  $invoice->category_names }} Tickets</p>
 				</div>
 				
 				<div style="margin-top: 50px;">
