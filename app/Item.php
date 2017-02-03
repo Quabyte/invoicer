@@ -138,7 +138,7 @@ class Item extends Model
             "PL8" => 0,
             "PL9" => 0,
             "PL10" => 0,
-            "PL10-Low-Visibility" => 0
+            "PL10-Low Visibility" => 0
         ];
 
         foreach ($areas as $area) {
@@ -197,7 +197,7 @@ class Item extends Model
                 case 'PL10':
                     $count['PL10'] = $count['PL10'] + 1;
                     break;
-                case 'PL10-Low-Visibility':
+                case 'PL10-Low Visibility':
                     $count['PL10-Low-Visibility'] = $count['PL10-Low-Visibility'] + 1;
                     break;
             }

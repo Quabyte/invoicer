@@ -23,6 +23,22 @@
                     <li>
                         <a href="{{ action('CompanyController@index') }}">Companies</a>
                     </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Link Reports <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{{ action('LinkReportController@generate') }}">Generate Link Report</a>
+                            </li>
+                            <li>
+                                <a href="{{ action('LinkReportController@generateKDV') }}">Generate KDV</a>
+                            </li>
+                            <li>
+                                <a href="{{ action('LinkReportController@generateTotal') }}">Generate Total</a>
+                            </li>
+                        </ul>
+                    </li>
                 @endif
                 @if(Auth::check() && App\User::checkEuroleague())
                     <li class="dropdown">

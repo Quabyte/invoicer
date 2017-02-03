@@ -66,11 +66,6 @@ class Customer extends Model
                 $customer->country = $json['customers'][$i]['postal_address']['country'];
                 $customer->telephone = $json['customers'][$i]['mobile'];
                 $customer->email = $json['customers'][$i]['email'];
-
-                if (is_array($json['customers'][$i]['custom_fields'])) {
-                    $customer->tc_kimlik = $json['customers'][$i]['custom_fields']['value'];
-                }
-
                 $customer->save();
             }
     	}

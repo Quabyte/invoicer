@@ -21,4 +21,8 @@ Route::get('/generated-proformas', 'ProformaController@generatedList');
 Route::resource('/role', 'RolesController');
 Route::resource('/permission', 'PermissionsController');
 
+Route::get('/generate-matrah', 'LinkReportController@generate');
+Route::get('/generate-kdv', 'LinkReportController@generateKDV');
+Route::get('/generate-total-report', 'LinkReportController@generateTotal');
+
 Auth::routes();
