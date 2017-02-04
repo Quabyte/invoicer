@@ -59,9 +59,9 @@ class Item extends Model
                 $item->area = $json['sales'][$i]['items'][$j]['area'];
                 $item->zone = $json['sales'][$i]['items'][$j]['zone'];
                 $item->seat = $json['sales'][$i]['items'][$j]['seat'];
-                $item->net_price = $json['sales'][$i]['items'][$j]['amount']['price'];
+                $item->net_price = str_replace(",", "", $json['sales'][$i]['items'][$j]['amount']['price']);
                 $item->card_fee = $json['sales'][$i]['items'][$j]['amount']['fee'];
-                $item->total = $json['sales'][$i]['items'][$j]['amount']['total'];
+                $item->total = str_replace(",", "", $json['sales'][$i]['items'][$j]['amount']['total']);
                 $item->created_at = Carbon::now('Europe/Istanbul');
                 $item->updated_at = Carbon::now('Europe/Istanbul');
                 $item->save();
