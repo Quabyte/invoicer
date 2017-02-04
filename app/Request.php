@@ -201,7 +201,7 @@ class Request extends Model
     public function getCustomers($rows = '3000')
     {
 
-//        $from = Util::getLatestRequestTime('customers');
+        $from = Util::getLatestRequestTime('customers');
         $to = Util::getNowTime();
 
         $client = new Client([
@@ -209,7 +209,7 @@ class Request extends Model
             'timeout' => $this->timeout
         ]);
 
-        $url = $this->apiURL . 'customers?registered_from=' . '2016-12-30T10:00' . '&registered_to=' . $to . '&rowsPerPage=' . $rows;
+        $url = $this->apiURL . 'customers?registered_from=' . $from . '&registered_to=' . $to . '&rowsPerPage=' . $rows;
 
         $response = $client->request('GET', $url, [
             'headers' => [
