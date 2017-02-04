@@ -76,7 +76,7 @@ class Sales extends Model
 
             if (!count($customer)) {
                 $request = new Request('https://euroleague.acikgise.com', 600);
-                $request->updateCustomer($json['sales'][$i]['customer']['id']);
+                $request->getSingleCustomer($json['sales'][$i]['customer']['id']);
             }
 
             $sale->customer_id = $json['sales'][$i]['customer']['id'];
