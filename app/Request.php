@@ -211,8 +211,6 @@ class Request extends Model
 
         $url = $this->apiURL . 'customers?registered_from=' . '2016-12-30T10:00' . '&registered_to=' . $to . '&rowsPerPage=' . $rows;
 
-        dd($url);
-
         $response = $client->request('GET', $url, [
             'headers' => [
                 'Authorization' => $this->apiKey
