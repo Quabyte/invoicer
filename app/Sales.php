@@ -71,6 +71,14 @@ class Sales extends Model
 
         for ($i = 0; $i <= sizeof($json['sales']) - 1; $i++) {
             $sale = new Sales;
+
+            $customer = Customer::where('id', '=', $json['sales'][$i]['customer']['id'])->get();
+
+            if (!count($customer)) {
+                $request = new Request('https://euroleague.acikgise.com', 600);
+                $request->updateCustomer($json['sales'][$i]['customer']['id']);
+            }
+
             $sale->customer_id = $json['sales'][$i]['customer']['id'];
             $sale->transaction_id = $json['sales'][$i]['id'];
             $sale->time = Carbon::parse($json['sales'][$i]['datetime']);
