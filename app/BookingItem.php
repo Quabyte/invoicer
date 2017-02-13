@@ -197,7 +197,7 @@ class BookingItem extends Model
 
         foreach ($count as $item => $value) {
             if ($value > 0) {
-                $list[$item] = $value;
+                $list[$item] = $value / 2;
             }
         }
 
