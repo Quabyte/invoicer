@@ -63,6 +63,8 @@ class Booking extends Model
     {
         $json = Util::decodeJson($jsonObject);
 
+        dd($json);
+
         for ($i=0; $i <= sizeof($json['bookings']) - 1 ; $i++) {
             $booking = Booking::where('booking_id', '=', $bookingRef)->first();
             $booking->customer_id = $json['bookings'][$i]['customer']['id'];
