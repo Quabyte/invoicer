@@ -301,13 +301,13 @@ class Request extends Model
 
         $url = $this->apiURL . 'booking/' . $bookingRef;
 
-        dd($url);
-
         $response = $client->request('GET', $url, [
            'headers' => [
                'Authorization' => $this->apiKey
            ]
         ]);
+
+        dd($response->getBody());
 
         Booking::updateBooking($response->getBody(), $bookingRef);
         BookingItem::saveItemsForOneBooking($response->getBody(), $bookingRef);
