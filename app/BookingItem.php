@@ -55,11 +55,11 @@ class BookingItem extends Model
     public static function saveItemsForOneBooking($jsonObject, $bookingRef)
     {
         $json = Util::decodeJson($jsonObject);
-
+        dd($json['bookings'][0]['items'][0]['seat']);
         for ($i=0; $i <= sizeof($json['bookings']) - 1; $i++) {
             if (is_array($json['bookings'][$i]['items'])) {
                 for ($j=0; $j <= sizeof($json['bookings'][$i]['items']) - 1 ; $j++) {
-                    if (static::checkSeatExists($json['bookings'][$i]['items'][$j]['seat'])) {
+                    if (!static::seatExists($json['bookings'][$i]['items'][$j]['seat'])) {
                         $item = new BookingItem;
                         $item->booking_id = $bookingRef;
                         $item->area = $json['bookings'][$i]['items'][$j]['area'];
@@ -77,7 +77,7 @@ class BookingItem extends Model
         }
     }
 
-    protected static function checkSeatExists($seat)
+    protected function seatExists($seat)
     {
         $bookingItems = BookingItem::where('seat', '=', $seat)->get();
 
