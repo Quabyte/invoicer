@@ -307,7 +307,7 @@ class Request extends Model
            ]
         ]);
 
-        dd($response->getBody());
+        dd($response);
 
         Booking::updateBooking($response->getBody(), $bookingRef);
         BookingItem::saveItemsForOneBooking($response->getBody(), $bookingRef);
