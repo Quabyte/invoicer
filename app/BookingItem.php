@@ -59,7 +59,7 @@ class BookingItem extends Model
         for ($i=0; $i <= sizeof($json['bookings']) - 1; $i++) {
             if (is_array($json['bookings'][$i]['items'])) {
                 for ($j=0; $j <= sizeof($json['bookings'][$i]['items']) - 1 ; $j++) {
-//                    if (static::checkSeatExists($json['bookings'][$i]['items'][$j]['seat'])) {
+                    if (static::checkSeatExists($json['bookings'][$i]['items'][$j]['seat'])) {
                         $item = new BookingItem;
                         $item->booking_id = $bookingRef;
                         $item->area = $json['bookings'][$i]['items'][$j]['area'];
@@ -69,7 +69,7 @@ class BookingItem extends Model
                         $item->total = $total;
                         $item->status = $json['bookings'][$i]['items'][$j]['transaction_type'];
                         $item->save();
-//                    }
+                    }
                 }
             } else {
                 return true;
@@ -79,7 +79,7 @@ class BookingItem extends Model
 
     protected static function checkSeatExists($seat)
     {
-        $bookingItems = BookingItem::where('seat', '=', $seat)->get();
+        $bookingItems = BookingItem::where('seat', '=', $seat)->first();
 
         if ($bookingItems->count() > 0)
         {
