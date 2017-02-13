@@ -79,7 +79,7 @@ class BookingItem extends Model
 
     protected static function checkSeatExists($seat)
     {
-        $bookingItems = BookingItem::where('seat', '=', $seat)->first();
+        $bookingItems = BookingItem::where('seat', '=', $seat)->get();
 
         if ($bookingItems->count() > 0)
         {
