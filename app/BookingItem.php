@@ -81,12 +81,11 @@ class BookingItem extends Model
     {
         $bookingItems = BookingItem::where('seat', '=', $seat)->get();
 
-        if ($bookingItems->count() > 0)
-        {
+        if (count($bookingItems)) {
             return false;
-        } else {
-            return true;
         }
+
+        return true;
     }
 
     /**
