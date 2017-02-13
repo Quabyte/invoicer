@@ -301,6 +301,8 @@ class Request extends Model
 
         $url = $this->apiURL . 'booking/' . $bookingRef;
 
+        dd($url);
+
         $response = $client->request('GET', $url, [
            'headers' => [
                'Authorization' => $this->apiKey
