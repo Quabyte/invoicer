@@ -77,7 +77,7 @@ class BookingItem extends Model
         }
     }
 
-    protected function seatExists($seat)
+    protected static function seatExists($seat)
     {
         $bookingItems = BookingItem::where('seat', '=', $seat)->get();
 
