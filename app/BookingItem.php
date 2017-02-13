@@ -97,7 +97,7 @@ class BookingItem extends Model
     public static function calculateTotal($bookingRef)
     {
         $items = BookingItem::where('booking_id', '=', $bookingRef)->get();
-        dd($items);
+
         $total = 0.0;
         foreach ($items as $item) {
             $total += $item->total;
