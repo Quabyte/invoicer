@@ -69,8 +69,6 @@ class BookingItem extends Model
                         $item->total = $total;
                         $item->status = $json['bookings'][$i]['items'][$j]['transaction_type'];
                         $item->save();
-                    } else {
-                        return true;
                     }
                 }
             } else {
