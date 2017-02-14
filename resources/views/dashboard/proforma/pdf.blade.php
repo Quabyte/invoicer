@@ -65,7 +65,9 @@
 							<p class="fs-14">2017 Turkish Airlines EuroLeague Final Four Istanbul</p>
 						</td>
 						<td width="30%">
-							<p class="fs-14">{{ $proforma->ticket_counts }} x {{ $proforma->category_names }} Tickets</p>
+							@for($i = 0; $i <= sizeof($tickets) -1; $i++)
+								<p class="fs-14">{{ $tickets[$i] }} x {{ $categories[$i] }} Tickets</p>
+							@endfor
 						</td>
 						<td width="30%">
 							<p class="fs-14">{{ $proforma->total }} EUR</p>

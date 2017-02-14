@@ -147,9 +147,15 @@ class ProformaController extends Controller
     public function generateProforma($id)
     {
         $proforma = Proforma::findOrFail($id);
+        $ticketCounts = $proforma->ticket_counts;
+        $categoryNames = $proforma->category_names;
+
+        $tickets = explode('.', $ticketCounts);
+        $categories = explode('.', $categoryNames);
+
         $customer = Customer::where('id', '=', $proforma->customer_id)->first();
         $pdf = App::make('dompdf.wrapper');
-        $pdf->loadView('dashboard.proforma.pdf', compact('proforma', 'customer'));
+        $pdf->loadView('dashboard.proforma.pdf', compact('proforma', 'customer', 'tickets', 'categories'));
         return $pdf->stream();
     }
 
