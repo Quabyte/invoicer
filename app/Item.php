@@ -198,7 +198,7 @@ class Item extends Model
                     $count['PL10'] = $count['PL10'] + 1;
                     break;
                 case 'PL10-Low Visibility':
-                    $count['PL10-Low-Visibility'] = $count['PL10-Low-Visibility'] + 1;
+                    $count['PL10-Low Visibility'] = $count['PL10-Low Visibility'] + 1;
                     break;
             }
         }
