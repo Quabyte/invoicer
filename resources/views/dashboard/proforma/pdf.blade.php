@@ -96,13 +96,12 @@
 		</div>
 
 		<div class="left">
-			<p class="fs-14"><b>Bank Name:</b> GARANTI BANK</p>
-			<p class="fs-14"><b>Bank Branch Name:</b> RUMELI CADDESI BRANCH</p>
-			<p class="fs-14"><b>Branch Number:</b> 406</p>
-			<p class="fs-14"><b>Account Number:</b> 908 34 33</p>
-			<p class="fs-14"><b>SWIFT Code:</b> TGBATRISXXX</p>
-			<p class="fs-14"><b>IBAN:</b> TR37 0006 2000 4060 0009 0834 33</p>
-			<p class="fs-14"><b>Branch Address:</b> Rumeli Cad. No:48 Nisantasi-Sisli-Istanbul/TURKEY</p>
+			<p class="fs-14"><b>Bank Name:</b> FINANSBANK</p>
+			<p class="fs-14"><b>Bank Branch Name:</b> AKDENIZ SUBESI</p>
+			<p class="fs-14"><b>Branch Number:</b> 941</p>
+			<p class="fs-14"><b>Account Name:</b> ACIKGISE BILET HIZMETLERI VE ORGANIZASYON A.S.</p>
+			<p class="fs-14"><b>SWIFT Code:</b> FNNBTRISXXX</p>
+			<p class="fs-14"><b>IBAN:</b> TR28 0011 1000 0000 0059 6560 71</p>
 			<p style="margin-top: 20px; color: red">Please note all bank transfer expenses will be covered by you.</p>
 			<p style="color: red;">PAYMENT MUST BE DONE IN EUROS</p>
 		</div>
