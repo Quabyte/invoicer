@@ -81,11 +81,12 @@ class SalesController extends Controller
         $items = Item::where('transaction_id', '=', $sale->transaction_id)->get();
 
         $itemCount = $items->count();
+        $itemCount = $itemCount / 2;
 
-        $deleted = Item::orderBy('id', 'desc')->take($itemCount / 2)->get();
+        $deleted = Item::orderBy('id', 'desc')->take($itemCount)->get();
 
         foreach ($deleted as $remove) {
-            $remove->destroy();
+            Item::destroy($remove->id);
         }
 
         return redirect()->back();
