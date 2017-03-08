@@ -2,7 +2,7 @@
 
 Route::get('/', 'HomeController@index');
 Route::get('/desk-sales', 'HomeController@deskOrders');
-Route::post('/remove-duplicates/{id}', 'SalesController@removeDuplicates');
+Route::get('/remove-duplicates/{id}', 'SalesController@removeDuplicates');
 
 Route::get('/request', 'RequestController@makeRequest');
 Route::get('/getBookings', 'RequestController@getBookings');
