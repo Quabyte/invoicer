@@ -64,7 +64,7 @@ class InvoiceController extends Controller
         $invoice->price_text = trim($request->priceText);
         $invoice->generated = $request->invoiceDate;
         $invoice->invoice_number = trim($request->invoiceNumber);
-        $invoice->currency_rate = trim($request->currencyRate);
+        $invoice->currency_rate = str_replace(',', '.',trim($request->currencyRate));
         $invoice->tc_kimlik = trim($request->tcKimlik);
         $invoice->canceled = false;
         $invoice->save();
