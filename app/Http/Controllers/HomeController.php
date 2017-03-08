@@ -28,6 +28,7 @@ class HomeController extends Controller
     public function index()
     {
         $sales = Sales::all();
-        return view('home', compact('sales'));
+        $customers = Customer::all();
+        return view('home', compact('sales', 'customers'));
     }
 }
