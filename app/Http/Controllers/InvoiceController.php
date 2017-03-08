@@ -42,6 +42,7 @@ class InvoiceController extends Controller
         $fee = Item::calculateFees($request->transaction_id);
         $netPrice = Item::calculateNetPrice($request->transaction_id);
         $total = Item::calculateTotal($request->transaction_id);
+        $total = str_replace(',', '', $total);
 
         $invoice = new Invoice;
         $invoice->transaction_id = $request->transaction_id;
