@@ -5,6 +5,9 @@
 @section('content')
 	<div class="container">
 		<div class="row">
+            <a href="{{ url('/') }}" class="btn btn-primary" style="margin-bottom: 15px;">
+               <i class="glyphicon glyphicon-chevron-left"></i> Back
+            </a>
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					{{ $transaction->transaction_id }}
