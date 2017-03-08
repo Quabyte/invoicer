@@ -40,6 +40,7 @@
                     <thead>
                         <tr>
                             <th>Order ID</th>
+                            <th>Customer</th>
                             <th>Method</th>
                             <th>Channel</th>
                             <th>Time</th>
@@ -49,22 +50,25 @@
                     </thead>
                     <tbody>
                         @foreach ($sales as $sale)
-                            <tr class="@if (App\Invoice::checkGenerated($sale->transaction_id))
-                                        success
-                                       @endif">
-                                <td>{{ $sale->transaction_id }}</td>
-                                <td>{{ $sale->payment_method }}</td>
-                                <td>{{ $sale->channel }}</td>
-                                <td>{{ $sale->time }}</td>
-                                <td>{{ $sale->transaction_type }}</td>
-                                <td>
-                                    @if(App\User::checkPermission())
-                                    <a href="{{ action('SalesController@edit', ['id' => $sale->id]) }}" class="btn btn-xs btn-default">
-                                        <i class="glyphicon glyphicon-pencil"></i>
-                                    </a>
-                                    @endif
-                                </td>
-                            </tr>
+                            @if (!\App\Invoice::checkGenerated($sale->transaction_id))
+                                <tr class="@if (App\Invoice::checkGenerated($sale->transaction_id))
+                                            success
+                                           @endif">
+                                    <td>{{ $sale->transaction_id }}</td>
+                                    <td>{{ $sale->customer->first_name . ' ' . $sale->customer->second_name }}</td>
+                                    <td>{{ $sale->payment_method }}</td>
+                                    <td>{{ $sale->channel }}</td>
+                                    <td>{{ $sale->time }}</td>
+                                    <td>{{ $sale->transaction_type }}</td>
+                                    <td>
+                                        @if(App\User::checkPermission())
+                                        <a href="{{ action('SalesController@edit', ['id' => $sale->id]) }}" class="btn btn-xs btn-default">
+                                            <i class="glyphicon glyphicon-pencil"></i>
+                                        </a>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endif
                         @endforeach
                     </tbody>
                 </table>
