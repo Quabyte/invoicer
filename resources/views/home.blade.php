@@ -41,6 +41,7 @@
                         <tr>
                             <th>Order ID</th>
                             <th>Method</th>
+                            <th>Customer Name</th>
                             <th>Channel</th>
                             <th>Time</th>
                             <th>Type</th>
@@ -55,6 +56,9 @@
                                            @endif">
                                     <td>{{ $sale->transaction_id }}</td>
                                     <td>{{ $sale->payment_method }}</td>
+                                    <?php $customer = \App\Customer::find($sale->customer_id)
+                                            ?>
+                                    <td>{{ $customer->first_name . ' ' . $customer->second_name }}</td>
                                     <td>{{ $sale->channel }}</td>
                                     <td>{{ $sale->time }}</td>
                                     <td>{{ $sale->transaction_type }}</td>
