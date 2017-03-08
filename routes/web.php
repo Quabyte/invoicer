@@ -1,6 +1,7 @@
 <?php
 
 Route::get('/', 'HomeController@index');
+Route::get('/desk-sales', 'HomeController@deskOrders');
 
 Route::get('/request', 'RequestController@makeRequest');
 Route::get('/getBookings', 'RequestController@getBookings');

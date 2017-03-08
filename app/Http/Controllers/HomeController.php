@@ -30,4 +30,11 @@ class HomeController extends Controller
 
         return view('home', compact('sales'));
     }
+
+    public function deskOrders()
+    {
+        $desks = Sales::where('channel', '=', 'DESK')->get();
+
+        return view('deskSales', compact('desks'));
+    }
 }
