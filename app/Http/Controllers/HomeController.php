@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Sales;
-use App\Customer;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Bugsnag\BugsnagLaravel\Facades\Bugsnag;
@@ -28,7 +27,7 @@ class HomeController extends Controller
     public function index()
     {
         $sales = Sales::all();
-        $customers = Customer::all();
-        return view('home', compact('sales', 'customers'));
+
+        return view('home', compact('sales'));
     }
 }

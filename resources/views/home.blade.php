@@ -40,7 +40,6 @@
                     <thead>
                         <tr>
                             <th>Order ID</th>
-                            <th>Customer</th>
                             <th>Method</th>
                             <th>Channel</th>
                             <th>Time</th>
@@ -55,7 +54,6 @@
                                             success
                                            @endif">
                                     <td>{{ $sale->transaction_id }}</td>
-                                    <td>{{ $sale->customer->first_name . ' ' . $sale->customer->second_name }}</td>
                                     <td>{{ $sale->payment_method }}</td>
                                     <td>{{ $sale->channel }}</td>
                                     <td>{{ $sale->time }}</td>
