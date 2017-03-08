@@ -19,7 +19,7 @@
                         <?php $customer = \App\Customer::find($sale->customer_id) ?>
                         <td>{{ $customer->first_name . $customer->second_name }}</td>
                         <td>
-                            <a href="#" class="text-warning">Remove Duplicates</a>
+                            <a href="{{ action('SalesController@removeDuplicates', ['id' => $sale->id]) }}" class="text-warning">Remove Duplicates</a>
                         </td>
                     </tr>
                 @endforeach

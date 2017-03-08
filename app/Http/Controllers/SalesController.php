@@ -73,4 +73,21 @@ class SalesController extends Controller
     {
         //
     }
+
+    public function removeDuplicates($id)
+    {
+        $sale = Sales::find($id);
+
+        $items = Item::where('transaction_id', '=', $sale->transaction_id)->get();
+
+        $itemCount = $items->count();
+
+        $deleted = Item::orderBy('id', 'desc')->take($itemCount / 2)->get();
+
+        foreach ($deleted as $remove) {
+            $remove->destroy();
+        }
+
+        return redirect()->back();
+    }
 }
