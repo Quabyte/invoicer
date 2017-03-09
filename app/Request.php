@@ -143,6 +143,25 @@ class Request extends Model
         Item::saveItems($response->getBody());
     }
 
+    public function getSalesOnParticularDates($from, $to)
+    {
+        $client = new Client([
+            'base_uri' => $this->baseUrl,
+            'timeout' => $this->timeout
+        ]);
+
+        $url = $this->apiURL . 'sales?from=' . $from . '&to=' . $to . '&with_items=true';
+
+        $response = $client->request('GET', $url, [
+           'headers' => [
+               'Authorization' => $this->apiKey
+           ]
+        ]);
+
+        Sales::saveNewSales($response->getBody());
+        Item::saveItems($response->getBody());
+    }
+
     public function getDeskSales()
     {
         $client = new Client([
