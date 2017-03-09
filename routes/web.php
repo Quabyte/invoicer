@@ -1,6 +1,7 @@
 <?php
 
 Route::get('/', 'HomeController@index');
+Route::get('/generated-list', 'HomeController@generated');
 Route::get('/desk-sales', 'HomeController@deskOrders');
 Route::get('/particular-sales', 'RequestController@getSalesOnParticularDates');
 

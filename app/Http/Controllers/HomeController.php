@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Invoice;
 use App\Sales;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -36,5 +37,12 @@ class HomeController extends Controller
         $desks = Sales::where('channel', '=', 'DESK')->get();
 
         return view('deskSales', compact('desks'));
+    }
+
+    public function generated()
+    {
+        $invoices = Invoice::all();
+
+        return view('generated', compact('invoices'));
     }
 }
