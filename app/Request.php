@@ -138,8 +138,7 @@ class Request extends Model
         ]);
 
         $this->saveRequestTime($this->apiKey, 'report');
-
-        Sales::saveNewSales($response->getBody());
+        
         Item::saveItems($response->getBody());
     }
 
