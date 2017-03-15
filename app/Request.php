@@ -329,4 +329,23 @@ class Request extends Model
         Booking::updateBooking($response->getBody(), $bookingRef);
         BookingItem::saveItemsForOneBooking($response->getBody(), $bookingRef);
     }
+
+    public function getSingleSale($saleID)
+    {
+        $client = new Client([
+            'base_uri' => $this->baseUrl,
+            'timeout' => $this->timeout
+        ]);
+
+        $url = $this->apiURL . 'sale/' . $saleID;
+
+        $response = $client->request('GET', $url, [
+            'headers' => [
+                'Authorization' => $this->apiKey
+            ]
+        ]);
+
+        Sales::saveNewSales($response->getBody());
+        Item::saveItems($response->getBody());
+    }
 }

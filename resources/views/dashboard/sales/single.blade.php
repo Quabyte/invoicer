@@ -11,7 +11,9 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					{{ $transaction->transaction_id }}
-
+                    @if (App\User::checkRoot())
+					    <a href="{{ action('RequestController@singleSale', ['saleID' => $transaction->transaction_id]) }}" class="btn btn-default btn-xs">Update Sale</a>
+                    @endif
 					<button class="btn btn-success btn-xs pull-right" data-toggle="modal" data-target="#invoiceModal">
 						<i class="glyphicon glyphicon-list-alt"></i> Invoice
 					</button>

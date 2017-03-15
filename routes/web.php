@@ -12,6 +12,7 @@ Route::get('/getDeskSales', 'RequestController@getDeskSales');
 Route::get('/update-tc/{id}', 'RequestController@getTcKimlik');
 Route::get('/updateCustomer/{id}', 'RequestController@singleCustomer');
 Route::get('/updateBooking/{id}', 'RequestController@singleBooking');
+Route::get('/updateSale/{id}', 'RequestController@singleSale');
 
 Route::resource('/company', 'CompanyController');
 Route::resource('/user', 'UsersController');

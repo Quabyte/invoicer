@@ -76,4 +76,12 @@ class RequestController extends Controller
 
         return redirect()->back();
     }
+
+    public function singleSale($saleID)
+    {
+        $request = new KoobinRequest('https://euroleague.acikgise.com', 600);
+        $request->getSingleSale($saleID);
+
+        return redirect()->back();
+    }
 }
