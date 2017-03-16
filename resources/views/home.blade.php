@@ -50,7 +50,7 @@
                     </thead>
                     <tbody>
                         @foreach ($sales as $sale)
-                            @if (!\App\Invoice::checkGenerated($sale->transaction_id))
+                            {{--@if (!\App\Invoice::checkGenerated($sale->transaction_id))--}}
                                 <tr class="@if (App\Invoice::checkGenerated($sale->transaction_id))
                                             success
                                            @endif">
@@ -70,7 +70,7 @@
                                         @endif
                                     </td>
                                 </tr>
-                            @endif
+                            {{--@endif--}}
                         @endforeach
                     </tbody>
                 </table>
