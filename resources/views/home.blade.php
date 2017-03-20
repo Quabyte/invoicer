@@ -26,6 +26,24 @@
             </div>
         @endif
     </div> --}}
+    @if (App\User::checkRoot())
+        <div class="row">
+            <div class="col-md-6">
+                <form action="{{ url('/getSaleDetails') }}" method="post">
+                    {{ csrf_field() }}
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Transaction ID" name="transactionID">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="submit" value="Get" class="btn btn-default">
+                    </div>
+                </form>
+            </div>
+        </div>
+    @endif
+
     <div class="row">
         <div class="panel panel-default">
             <div class="panel-heading">

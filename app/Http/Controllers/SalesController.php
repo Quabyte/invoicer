@@ -91,4 +91,11 @@ class SalesController extends Controller
 
         return redirect()->back();
     }
+
+    public function getIndividualSale(Request $request)
+    {
+        app('App\Http\Controllers\RequestController')->singleSale($request->transactionID);
+
+        return redirect()->back();
+    }
 }

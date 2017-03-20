@@ -13,6 +13,7 @@ Route::get('/update-tc/{id}', 'RequestController@getTcKimlik');
 Route::get('/updateCustomer/{id}', 'RequestController@singleCustomer');
 Route::get('/updateBooking/{id}', 'RequestController@singleBooking');
 Route::get('/updateSale/{id}', 'RequestController@singleSale');
+Route::post('/getSaleDetails', 'SalesController@getIndividualSale');
 
 Route::resource('/company', 'CompanyController');
 Route::resource('/user', 'UsersController');
