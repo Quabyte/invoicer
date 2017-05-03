@@ -98,4 +98,11 @@ class SalesController extends Controller
 
         return redirect()->back();
     }
+
+    public function getIndividualBooking(Request $request)
+    {
+        app('App\Http\Controllers\RequestController')->getSingleBooking($request->bookingRef);
+
+        return redirect()->back();
+    }
 }

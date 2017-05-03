@@ -14,6 +14,17 @@
 					LATEST BOOKINGS
 					@if (Auth::check() && App\User::checkEuroleague())
 						<a href="{{ action('RequestController@getBookings', ['baseUrl' => 'https://euroleague.acikgise.com']) }}" class="btn btn-success btn-xs pull-right">Refresh</a>
+						<form action="{{ url('/getSingleBookingDetail') }}" method="post">
+							{{ csrf_field() }}
+							<div class="col-md-8">
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="Transaction ID" name="bookingRef">
+								</div>
+							</div>
+							<div class="col-md-4">
+								<input type="submit" value="Get" class="btn btn-default">
+							</div>
+						</form>
 					@endif
 				</div>
 				<div class="panel-body">

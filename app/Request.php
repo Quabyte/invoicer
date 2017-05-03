@@ -347,4 +347,23 @@ class Request extends Model
         Sales::saveNewSales($response->getBody());
         Item::saveItems($response->getBody());
     }
+
+    public function getSingleBooking($bookingRef)
+    {
+        $client = new Client([
+            'base_uri' => $this->baseUrl,
+            'timeout' => $this->timeout
+        ]);
+
+        $url = $this->apiURL . 'booking/' . $bookingRef;
+
+        $response = $client->request('GET', $url, [
+            'headers' => [
+                'Authorization' => $this->apiKey
+            ]
+        ]);
+
+        Booking::saveNewBookings($response->getBody());
+        BookingItem::saveItems($response->getBody());
+    }
 }

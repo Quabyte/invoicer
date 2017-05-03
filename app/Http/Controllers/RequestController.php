@@ -84,4 +84,12 @@ class RequestController extends Controller
 
         return redirect()->back();
     }
+
+    public function getSingleBooking($bookingRef)
+    {
+        $request = new KoobinRequest('https://euroleague.acikgise.com', 600);
+        $request->getSingleBooking($bookingRef);
+
+        return redirect()->back();
+    }
 }
