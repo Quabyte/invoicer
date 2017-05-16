@@ -11,9 +11,10 @@
 				</div>
 
 				<div class="panel-body">
-					<table class="table">
+					<table class="table table-striped table-bordered" id="proformaTable">
 						<thead>
 							<tr>
+								<th>ID</th>
 								<th>Booking ID</th>
 								<th>Total</th>
 								<th>Customer</th>
@@ -25,6 +26,7 @@
 						<tbody>
 							@foreach ($proformas as $proforma)
 								<tr>
+									<td>{{ $proforma->id }}</td>
 									<td>{{ $proforma->booking_id }}</td>
 									<td>{{ $proforma->total }}</td>
 									<td><?php $customer = App\Customer::where('id', '=', $proforma->customer_id)->first(); ?> {{ $customer->first_name }}</td>
@@ -45,4 +47,18 @@
 			</div>
 		</div>
 	</div>
+@stop
+
+@section('scripts')
+	<script src="{{ asset('dataTables/datatables.min.js') }}"></script>
+	<script>
+        $(document).ready(function() {
+            $('#proformaTable').DataTable( {
+                autoFill: true,
+                buttons: [
+                    'copy', 'excel', 'pdf'
+                ]
+            } );
+        } );
+	</script>
 @stop
