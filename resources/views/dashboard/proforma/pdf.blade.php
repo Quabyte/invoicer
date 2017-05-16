@@ -29,6 +29,7 @@
 		<div class="center">
 			<p class="info">Yildiz Posta Caddesi Cerrahoglu Is Merkezi No:17 Zemin Kat 34394</p>
 			<p class="info">Esentepe-Sisli-ISTANBUL</p>
+			<p class="info">VAT: Mecidiyekoy Vergi Dairesi | VAT Number: 0060483600</p>
 		</div>
 
 		<div class="center">
